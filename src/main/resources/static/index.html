@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Inventory</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Bitter|Ubuntu+Mono' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="style.css">
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>
+      
+    </style>
+  </head>
+
+ 
+
+  <body>
+
+    <script src="extraFunctions.js"></script>
+    <script src="item.js"></script>
+    <script src="charecter.js"></script>
+    <script src="dcRollsMenus.js"></script>
+    <script src="quickbar.js"></script>
+    <script src="iconsWindowAndContextMenu.js"></script>
+    
+    <script src="definitionOfObjects.js"></script>
+    
+    <div class = "buttonSideBar" id = "sideBarOpenClose"></div>
+    <div class="sideBar" id = "sideBarLoot">Loot</div>
+    <script src="sideBarLoot.js"></script>
+
+    <div class="inventory" id = "inventorySection">
+      <div class="header" id = "inventoryHeader">inventory</div>
+      <div class="buttons">
+        <div class = "button" id = "equipment">equipment</div>
+        <div class = "button" id = "usefulGear">useful gear</div>
+        <div class = "button" id = "spendable">spendable</div>
+        <div class = "button" id = "questItems">quest items</div>
+        <div class = "button" id = "randomStuff">random stuff</div>
+      </div>
+      <img target = "net" src = "images/net8x8.png" id = "net8x8">
+      <div class="buttons">
+        <div class = "button" id = "condenseButton">condense</div>
+        <div class = "button" id = "sortButton">sort</div>
+        <div class = "button" id = "newItemButton">new item</div>
+      </div>
+    </div>
+
+    <div class = "baseContext-menu" id = "itemPrimaryContext-menu">
+      <div class="item" id = "deleteItemButton">delete item</div>
+      <div class="item" id = "equipItemButton">equip item</div>
+      <div class="item" id = "changeIconItemButton">change item icon</div>
+    </div>
+    <div class = "baseContext-menu" id = "imageCharacterContext-menu">
+      <div class="item" id = "changeImageCharacterButton">change character image</div>
+    </div>
+
+    <div id = "changeItemIconWindow">
+      <div class = "buttonCloseIcon" id = "changeItemIconWindowCloseButt">close</div>
+    </div>
+    
+    <script src="main.js"></script>
+  </body>
+  <!--<script src="jscolor/jscolor.js"></script>-->
+  
+</html>

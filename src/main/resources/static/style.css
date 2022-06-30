@@ -1,0 +1,368 @@
+
+body{
+	width: 100%;
+	height: 100%;
+	font-family:Arial, Helvetica, sans-serif;
+	padding: 0;
+	margin: 0;
+}
+
+
+body > .semilayer {
+	padding: 5px; /* Поля вокруг текста */
+	background: #961e1e60; /* Цвет фона */
+	margin: 0 auto; /* Выравниваем слой по центру */
+	width: 20%; /* Ширина слоя */
+	opacity: 0.7; /* Значение прозрачности */
+	filter: alpha(Opacity=70); /* Прозрачность в IE */
+	font-size: 30px;
+}
+
+
+/*___________________________________inventory section______________________________________*/
+.inventory {
+	width: 20%; /* Ширина слоя */
+	left: 0.5%;
+	top: 1%;
+	position: fixed;
+	border: 1px solid black;
+	font-size: 30px;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	flex-direction:column;
+}
+.header {
+	padding: 5px 5px; 
+	background-color: gray;
+	text-align: center;
+	margin: 0 auto; 
+	border: 1px solid black;
+	width: 100%; /* Ширина слоя */
+	height: 50px;
+	font-size: 30px;
+	box-sizing: border-box;
+}
+
+.buttons{
+	height: 10%;
+	justify-content: space-between;
+	background-color: rgba(70, 45, 0, 0.733);
+	border: 1px solid black;
+	display: flex;
+	flex-direction: row;
+}
+.button{
+	width:18%;
+	height:35px;
+	margin: 5px 5px 5px 5px;
+	padding: 8px 0px;
+	border: 1px solid black;
+	box-sizing: border-box;
+	background-color: gray;
+	text-align: center;
+  	text-decoration: none;
+	transition-duration: 0.3s;
+	font-size: 14px;
+	cursor: pointer;
+}
+.button:hover {
+	background-color: rgb(173, 216, 230); /* Green */
+	color: black;
+}
+
+.img[target="net"] {
+	/*background-image: url("images/net_8x8.png");*/
+	width: 100%; /* Ширина слоя */
+	margin-top:0%;
+}
+
+.itemDesign{
+	width:100;
+	height:100;
+	position:absolute;
+	transition-duration: 0.2s;
+}
+.itemDesign:hover {
+	background-color: lightblue; /* Green */
+	color: black;
+}
+
+/*item description*/
+.itemDescription{
+	border: 1px solid black;
+	border-radius: 5px;
+	width:400px;
+	z-index: 1000;
+	box-sizing: border-box;
+	position:absolute;
+	background-color: rgb(248, 248, 248);
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 16px;
+}
+.itemDescription-itemHeader {
+	padding: 5px 5px;
+	border-radius: 5px 5px 0px 0px;
+	z-index: 1000; 
+	background-color: rgb(140, 159, 172);
+	text-align: center;
+	margin: 0 auto; 
+	width: 100%; /* Ширина слоя */
+	font-size: 20px;
+	box-sizing: border-box;
+}
+.itemDescription-itemDesc {
+	padding: 10px 20px 45px 20px;
+	border-radius: 5px;
+	z-index: 1000;
+	width: 100%; /* Ширина слоя */
+	box-sizing: border-box;
+}
+.itemDescription-itemType {
+	padding: 10px 30px 15px 10px;
+	border: 1px solid black;
+	/*border-radius: 5px;*/
+	z-index: 1000;
+	width: 100%; /* Ширина слоя */
+	font-size: 14px;
+	box-sizing: border-box;
+}
+.itemDescription-itemSecType {
+	padding: 5px 20px 5px 10px;
+	border: 1px solid black;
+	border-radius: 5px;
+	z-index: 1000;
+	width: 100%; /* Ширина слоя */
+	font-size: 12px;
+	box-sizing: border-box;
+}
+
+/*context menu*/
+.baseContext-menu {
+	position: fixed;
+	z-index: 10000;
+	width: 150px;
+	background: #1b1a1a;
+	border-radius: 5px;
+	display: none;
+}
+.baseContext-menu.visible{
+	display: block;
+}
+.baseContext-menu .item{
+	padding: 8px 10px;
+	font-size: 15px;
+	color: #eee;
+	cursor: pointer;
+	border-radius: inherit;
+}
+.baseContext-menu .item:hover {
+	background: #343434;
+}
+
+
+/*___________________________________character page section______________________________________*/
+.characterPage{
+	border: 1px solid black;
+	width: 40%;
+	height:auto;
+	position: absolute;
+	top: 1%;
+	left: 30%;
+	background-size: cover;
+	background-image: url('images/book.png');
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 16px;
+}
+.imageOfChar {
+	/*background-image: url("images/net_8x8.png");*/
+	width: 50%; /* Ширина слоя */
+	opacity: 0.5;
+	border: 1px solid black;
+}
+.equipmentBox{
+	position: absolute;
+}
+.equipmentBoxName{
+	border: 1px solid black;
+	position: absolute;
+	background-color: rgb(248, 248, 248);
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 16px;
+}
+
+.charIconButtonStyle{
+	width: 4%;
+	height: 8%;
+	background-size: cover;
+	border: 1px solid black;
+	position: absolute;
+	cursor: pointer;
+	text-align: center;
+	background-color: #343434;
+	transition-duration: 0.3s; 
+	font-size: 12px;
+}
+.charIconButtonStyle:hover{
+	border: 1px solid black;
+	background-color: #3c5c80;
+}
+.newCharNameSpaceStyle{
+	width: 4%;
+	height: 8%;
+	position: absolute;
+	color:#1b1a1a;
+	background-color: #eeeeee;
+	border: 1px solid black;
+	border-radius: 5%;
+	transition-duration: 0.3s; 
+	font-size: 12px;
+}
+
+.droppingListContainerDesign{
+	width: 48%;
+	position: absolute;
+	border: 1px solid black;
+}
+.droppingListDesign{
+	width: 100%;
+	position: relative;
+	top: 0%;
+	left: 0%;
+	border: 1px solid black;
+	padding: 5px 0px 5px 0px;
+	text-align: center;
+	background-color: rgb(223, 233, 230);
+	cursor: pointer;
+	font-size: 14px;
+}
+.droppingListDesign:hover{
+	background-color: #3c5c80;
+}
+.droppingListPlusButtonDesign{
+	width: 100%;
+	position: relative;
+	text-align: center;
+	border: 1px solid rgb(255, 255, 255);
+	padding: 5px 0px 5px 0px;
+	color:rgb(248, 248, 248);
+	background-color: rgb(5, 5, 5);
+	cursor: pointer;
+	font-size: 14px;
+}
+.droppingListPlusButtonDesign:hover{
+	background-color: #27270d;
+}
+.droppingListElementDesign{
+	width: 100%;
+	height: 20px;
+	position: relative;
+	border: 1px solid rgb(255, 255, 255);
+	padding: 5px 0px 5px 0px;
+	text-align: center;
+	color:rgb(248, 248, 248);
+	background-color: rgb(20, 20, 20);
+	font-size: 14px;
+}
+
+
+/*___________________________________quick bar section______________________________________*/
+.quickBar{
+	position: fixed;
+	left: 25%;
+	width: 50%;
+    /*transform: translateX(-50%);*/
+	bottom: 0%;
+	justify-content: space-between;
+	background-color: rgba(100, 72, 20, 0.733);
+	border: 1px solid black;
+	display: flex;
+	flex-direction: row;
+}
+
+.quickBarCells{
+	width:8%;
+	margin: 1px 1px 1px 1px;
+	padding: 8px 2px;
+	box-sizing: border-box;
+}
+
+
+
+/*___________________________________side bar section______________________________________*/
+.sideBar{
+	height: 100%;    
+	width: 20%;
+	background: #eeeeee;
+	border: 1px solid black;
+	position: fixed;    
+	right: 0px;    
+	top: 0px; 
+	text-align: center;
+	transition: transform 1s; 
+}
+.buttonSideBar{
+	width:20px;
+	height:100px;
+	padding: 8px 0px;
+	border: 1px solid black;
+	position: fixed;
+	background-color: gray;
+	text-align: center;
+  	text-decoration: none;
+	transition: transform 1s; 
+	font-size: 14px;
+	cursor: pointer;
+}
+.buttonSideBar:hover {
+	background-color: rgb(173, 216, 230); /* Green */
+	color: black;
+}
+.lootChest {
+	/*background-image: url("images/net_8x8.png");*/
+	top: 10%;
+	left: 25%;
+	width: 50%; /* Ширина слоя */
+	position: absolute;
+	/*padding: 50px 0px;*/
+	margin-top:10%;
+}
+
+
+/*___________________________________change item icon section______________________________________*/
+#changeItemIconWindow{
+	height: 70%;    
+	width: 70%;
+	background: #d6d3d3;
+	border: 1px solid black;
+	border-radius: 5%;
+	position: fixed;
+	right: 15%;    
+	top: 15%; 
+	text-align: center;
+	transition: transform 1s;
+	z-index: 10000;
+	display: none;
+}
+#changeItemIconWindow.visible1{
+	display: block;
+}
+#changeItemIconWindow .buttonCloseIcon{
+	padding: 8px 10px;
+	font-size: 15px;
+	color: #eee;
+	cursor: pointer;
+	border-radius: inherit;
+}
+#changeItemIconWindow .buttonCloseIcon:hover{
+	background: #343434;
+}
+#changeItemIconWindow .itemIcon{
+	width: 10%;
+	position: absolute;
+	cursor: pointer;
+}
+#changeItemIconWindow .itemIcon:hover{
+	border: 2px solid black;
+	width: 10.5%;
+}

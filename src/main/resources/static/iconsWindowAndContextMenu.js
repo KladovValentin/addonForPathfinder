@@ -1,0 +1,274 @@
+
+class customItemContextMenu {
+    constructor() {
+      this.enactingItemId = -1;
+    }
+}
+class customCharImageContextMenu {
+  constructor() {
+    this.enactingCharName = "a";
+  }
+}
+
+class changeIconWindowClass {
+  constructor() {
+    this.activationParameter = -1;
+  }
+}
+
+
+function removeItem(tempItem){
+    var infoToSend = String(tempItem.itemId);
+    //remove occupation of equipment
+    if (tempItem.equipped){
+      let charPageName = tempItem.whoseItemIs + "CharPage";
+      let boxid = transformItemSecTypeToBoxId(charPageName, tempItem);
+      document.getElementById(boxid).occupied = false;
+      document.getElementById(boxid).occupationItemId = 0;
+    }
+    //remove from item list
+    removeFromListById(tempItem.itemId);
+    //remove from page
+    tempItem.remove();
+    //remove description if any
+    if (document.getElementById("tempDesc")){
+      document.getElementById("tempDesc").remove();
+    }
+    //remove on server
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", serverAddress+"removeItem?info="+infoToSend, false);
+    xmlHttp.send( null );
+}
+  
+function handleChangingItemIcon(activationParameter){
+    const changeItemIconWindow = document.getElementById("changeItemIconWindow");
+    changeItemIconWindow.activationParameter = activationParameter;
+    changeItemIconWindow.classList.add("visible1");
+    if (activationParameter == 1){
+      for(let i = 0; i < itemIconsFileList.length; i++){
+        document.getElementById("changeItemIconItem"+String(i)).style.display = "block";
+      }
+    }
+    else if (activationParameter == 2){
+      for(let i = 0; i < charIconsFileList.length; i++){
+        document.getElementById("changeCharIconItem"+String(i)).style.display = "block";
+      }
+    }
+}
+  
+  //function that transform secondary item type to prospective equipment box id
+function transformItemSecTypeToBoxId(charPageName, newItem){
+    let sectype = newItem.itemSecondaryType;
+    let equipmentBoxId = charPageName;
+    let charpage = document.getElementById(newItem.whoseItemIs + "CharPage");
+    for (let i = 0; i < charpage.socketsIds.length; i++){
+
+      if(sectype == charpage.socketsTypes[i]){
+
+        //check on several sockets of the same type - occupied / not occupied
+        let boxOfEquipmentExtra = document.getElementById(equipmentBoxId + charpage.socketsIds[i]);
+        if(i+1<charpage.socketsIds.length && boxOfEquipmentExtra.occupied && boxOfEquipmentExtra.occupationItemId != newItem.itemId){
+          if(charpage.socketsTypes[i+1] == charpage.socketsTypes[i]){
+            continue;
+          }
+        }
+
+        return equipmentBoxId + charpage.socketsIds[i];
+      }
+    }
+    return "none";
+}
+  
+function equipUnequipItem(newItem){
+    //get box id according to type
+    let charPageName = newItem.whoseItemIs + "CharPage";
+    let boxid = transformItemSecTypeToBoxId(charPageName, newItem);
+    //check if id or type is correct
+    if (boxid == "none"){
+      alert("equipment subtype is not valid!"); 
+      return;
+    }
+  
+    //equip or unequip 
+    let boxOfEquipment = document.getElementById(boxid);
+  
+    //ocuppied - unequip one that occupies
+    if (boxOfEquipment.occupied == true && !newItem.equipped){
+      newItem.equipped = newItem.equipped ? false : true;
+      let currentPaget = currentPage;
+      currentPage = newItem.itemType;
+      items[findIndexInItems(boxOfEquipment.occupationItemId)].itemCell = findFreeCell();
+      currentPage = currentPaget;
+      newItem.equipped = newItem.equipped ? false : true;
+      items[findIndexInItems(boxOfEquipment.occupationItemId)].equipped = false;
+      updateItemInfo(findIndexInItems(boxOfEquipment.occupationItemId));
+    }
+  
+    //change occupation. If it is being unequiped - it will be placed in cells automatically each second
+    boxOfEquipment.occupied = false;
+    if (!newItem.equipped){
+      boxOfEquipment.occupied = true;
+      boxOfEquipment.occupationItemId = newItem.itemId;
+      newItem.style.top = boxOfEquipment.getBoundingClientRect().top + 'px';
+      newItem.style.left = boxOfEquipment.getBoundingClientRect().left +'px';
+    }
+
+    //change cell on first free without equipped on the appropriate page
+    let currentPaget = currentPage;
+    currentPage = newItem.itemType;
+    newItem.itemCell = findFreeCell();
+    console.log(newItem.itemCell);
+    currentPage = newItem.itemType;
+
+    newItem.equipped = newItem.equipped ? false : true;
+
+    placeItemsInCells();
+    displayOnlyThisType(currentPage);
+    updateItemInfo(findIndexInItems(newItem.itemId));
+}
+
+
+function preCreateItemContextMenu(){
+  let contextMenut = document.getElementById("itemPrimaryContext-menu");
+  contextMenut.classList.add("customItemContextMenu");
+  contextMenut.enactingItemId = -1;
+  const deleteItemButton = document.getElementById("deleteItemButton");
+  const equipItemButton = document.getElementById("equipItemButton");
+  const changeIconItemButton = document.getElementById("changeIconItemButton");
+
+  //_________________deleting listener
+  deleteItemButton.addEventListener("click", function(){
+    let contextMenu = document.getElementById("itemPrimaryContext-menu");
+    let newItem = items[findIndexInItems(contextMenu.enactingItemId)];
+    contextMenu.classList.remove("visible");
+    removeItem(newItem);
+  });
+
+  //_________________equipping listener
+  equipItemButton.addEventListener("click", function(){
+    let contextMenu = document.getElementById("itemPrimaryContext-menu");
+    let newItem = items[findIndexInItems(contextMenu.enactingItemId)];
+    //delete context menu
+    contextMenu.classList.remove("visible");
+    //remove description if any
+    if (document.getElementById("tempDesc")){
+      document.getElementById("tempDesc").remove();
+    }
+    equipUnequipItem(newItem);
+  });
+
+  //_________________change icon listener
+  changeIconItemButton.addEventListener("click", function(){
+    let contextMenu = document.getElementById("itemPrimaryContext-menu");
+    contextMenu.classList.remove("visible");
+    handleChangingItemIcon(1);
+  });
+}
+
+function preCreateCharImageContextMenu(){
+  let contextMenut = document.getElementById("imageCharacterContext-menu");
+  contextMenut.classList.add("customCharImageContextMenu");
+  contextMenut.enactingImageId = -1;
+  const changeImageCharacterButton = document.getElementById("changeImageCharacterButton");
+
+  //_________________change icon listener
+  changeImageCharacterButton.addEventListener("click", function(){
+    let contextMenu = document.getElementById("imageCharacterContext-menu");
+    contextMenu.classList.remove("visible");
+    handleChangingItemIcon(2);
+  });
+}
+
+// on load make this function to handle changing item icons window
+function createItemIcons(){
+
+    // get file names of icons (without image/)
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", serverAddress+"getItemIconFileNames", false);
+    xmlHttp.send( null );
+    var serverResponse = xmlHttp.responseText;
+    let fileNames = serverResponse.split(";");
+    for(let i = 0; i < fileNames.length; i++){
+      itemIconsFileList.push(fileNames[i]);
+    }
+    let xmlHttp2 = new XMLHttpRequest();
+    xmlHttp2.open( "GET", serverAddress+"getCharIconFileNames", false);
+    xmlHttp2.send( null );
+    let serverResponse1 = xmlHttp2.responseText;
+    let fileNames1 = serverResponse1.split(";");
+    for(let i = 0; i < fileNames1.length; i++){
+      charIconsFileList.push(fileNames1[i]);
+    }
+
+    // create image icons
+    let changeItemIconWindow = document.getElementById("changeItemIconWindow");
+    changeItemIconWindow.classList.add("changeIconWindowClass");
+    changeItemIconWindow.activationParameter = -1;
+    for(let i = 0; i < itemIconsFileList.length; i++){
+      let icont = document.createElement("img");
+      icont.classList.add("itemIcon");
+      icont.id = "changeItemIconItem"+String(i);
+      icont.src = "images/items/" + itemIconsFileList[i];
+      icont.style.display = "none";
+
+      icont.style.top = String(5.5+(i-i%9)/9*20) + '%';
+      icont.style.left = String(1.5+(i%9)*11) + '%';
+
+      changeItemIconWindow.appendChild(icont);
+
+      //add event listeners to them to change icons
+      icont.addEventListener("click", function(){
+        let changeItemIconWindowt = document.getElementById("changeItemIconWindow");
+        let contextMenu = document.getElementById("itemPrimaryContext-menu");
+        let locItem = items[findIndexInItems(contextMenu.enactingItemId)];
+        locItem.src = icont.src;
+        locItem.itemIconSrc = icont.src;
+        updateItemInfo(findIndexInItems(locItem.itemId));
+        for(let j = 0; j < itemIconsFileList.length; j++){
+          document.getElementById("changeItemIconItem"+String(j)).style.display = "none";
+        }
+        changeItemIconWindow.classList.remove("visible1");
+      });
+    }
+    for(let i = 0; i < charIconsFileList.length; i++){
+      let icont = document.createElement("img");
+      icont.classList.add("itemIcon");
+      icont.id = "changeCharIconItem"+String(i);
+      icont.src = "images/chars/" + charIconsFileList[i];
+      icont.style.display = "none";
+
+      icont.style.top = String(5.5+(i-i%9)/9*20) + '%';
+      icont.style.left = String(1.5+(i%9)*11) + '%';
+
+      changeItemIconWindow.appendChild(icont);
+
+      //add event listeners to them to change icons
+      icont.addEventListener("click", function(){
+        let contextMenu = document.getElementById("imageCharacterContext-menu");
+        let locImage = document.getElementById(contextMenu.enactingCharName + "CharPage" + "Image");
+        let locCharPage = document.getElementById(contextMenu.enactingCharName + "CharPage");
+        locImage.src = icont.src;
+        locCharPage.charImage = icont.src;
+        placeItemsInCells();
+        updateCharacterParameters(contextMenu.enactingCharName);
+        for(let j = 0; j < charIconsFileList.length; j++){
+          document.getElementById("changeCharIconItem"+String(j)).style.display = "none";
+        }
+        changeItemIconWindow.classList.remove("visible1");
+      });
+    }
+
+    //_________________quiting window listener
+    closeBut = document.getElementById("changeItemIconWindowCloseButt");
+    closeBut.addEventListener("click", function(){
+      for(let i = 0; i < itemIconsFileList.length; i++){
+        document.getElementById("changeItemIconItem"+String(i)).style.display = "none";
+      }
+      for(let i = 0; i < charIconsFileList.length; i++){
+        document.getElementById("changeCharIconItem"+String(i)).style.display = "none";
+      }
+      changeItemIconWindow.classList.remove("visible1");
+    });
+
+
+}

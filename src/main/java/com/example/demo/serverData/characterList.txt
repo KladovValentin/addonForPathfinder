@@ -1,0 +1,9 @@
+Oliver
+images/chars/Oliver.webp
+Attack;1;/roll d20
+Attack;0;letBe
+Ac;0;12
+next Character
+Rem
+images/chars/character.jpg
+next Character

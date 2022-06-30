@@ -1,0 +1,144 @@
+0
+cloak of resistance
+equipment
+1 save throw
+10.0
+10.0
+1
+true
+Oliver
+back
+images/items/cloak.png
+
+1
+crossbow
+equipment
+asdasd
+10.0
+10.0
+1
+true
+Oliver
+left hand
+images/items/crossbow.png
+
+2
+ring 2
+equipment
+ring 2
+10.0
+10.0
+1
+true
+Oliver
+ring
+images/items/ring.png
+
+3
+ring 30 fire res
+equipment
+grants wielder 30 percent fire resistance
+10.0
+10.0
+1
+true
+Oliver
+ring
+images/items/ring.png
+
+4
+item for quest x
+questItems
+exclamation mark with strange shape
+10.0
+10.0
+1
+false
+Oliver
+random Stuff
+images/items/quest item type.png
+
+5
+leather armor
+equipment
+2 AC
+10.0
+10.0
+1
+true
+Oliver
+armor
+images/items/armor.png
+
+6
+wand on intelligence
+equipment
+asdasd
+10.0
+10.0
+1
+true
+Oliver
+ring
+images/items/belt.png
+
+7
+wand on intelligence
+equipment
+asdasd
+10.0
+10.0
+1
+true
+Oliver
+ring
+images/items/amulet.png
+
+8
+wand on intelligence
+equipment
+asdasd
+10.0
+10.0
+1
+true
+Oliver
+right hand
+images/items/sword.png
+
+9
+wand on intelligence
+randomStuff
+/roll d20 5 2
+10.0
+10.0
+1
+false
+Rem
+random Stuff
+images/items/scroll.png
+
+11
+wand on intelligence
+equipment
+asdasd
+10.0
+10.0
+1
+true
+Oliver
+head
+images/items/helmet.png
+
+10
+wand on intelligence
+equipment
+asdasd
+10.0
+10.0
+1
+true
+Oliver
+boots
+file:///D:/helpful/Java/server/src/main/resources/static/images/items/boots.png
+
