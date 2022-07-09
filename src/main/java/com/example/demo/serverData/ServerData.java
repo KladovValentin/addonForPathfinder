@@ -16,12 +16,15 @@ import java.util.Scanner; // Import the Scanner class to read text files
 public class ServerData {
     public static ArrayList<Player> playerList = new ArrayList<>();
     public static int timesTheButtonWasPressed = 0;
+    static String basePath = "D:\\helpful\\Java\\addonForPathfinder\\src\\main\\";
 
     public static ArrayList<Item> itemList = new ArrayList<Item>();
 
     public static ArrayList<String> itemIcons = new ArrayList<String>();
     public static ArrayList<String> charIcons = new ArrayList<String>();
     public static ArrayList<Character> characters = new ArrayList<Character>();
+
+    public static String voiceText = "";
 
     public static Player getPlayer(String name){
         for(Player p: playerList){
@@ -34,7 +37,7 @@ public class ServerData {
         try {
             //itemIcons = new ArrayList<>();
             // Create a file object
-            File f = new File("D:\\helpful\\Java\\server\\src\\main\\resources\\static\\images\\items");
+            File f = new File(basePath + "resources\\static\\images\\items");
 
             // Get all the names of the files present
             // in the given directory
@@ -49,7 +52,7 @@ public class ServerData {
                 itemIcons.add(tempName);
             }
 
-            File f1 = new File("D:\\helpful\\Java\\server\\src\\main\\resources\\static\\images\\chars");
+            File f1 = new File(basePath + "resources\\static\\images\\chars");
             File[] files1 = f1.listFiles();
             for (int i = 0; i < files1.length; i++) {
                 String tempName = files1[i].getName();
@@ -63,7 +66,7 @@ public class ServerData {
 
     public static void readCharacterList(){
         try {
-            File infile = new File("D:\\helpful\\Java\\server\\src\\main\\java\\com\\example\\demo\\serverData\\characterList.txt");
+            File infile = new File(basePath + "java\\com\\example\\demo\\serverData\\characterList.txt");
             Scanner myReader = new Scanner(infile);
             String name = "";
             String imageSrc = "";
@@ -90,7 +93,7 @@ public class ServerData {
     }
     public static void writeCharacterList(){
         try {
-            FileWriter outfile = new FileWriter("D:\\helpful\\Java\\server\\src\\main\\java\\com\\example\\demo\\serverData\\characterList.txt");
+            FileWriter outfile = new FileWriter(basePath + "java\\com\\example\\demo\\serverData\\characterList.txt");
             for(int x = 0; x < ServerData.characters.size(); x++){
                 outfile.write(String.valueOf(ServerData.characters.get(x).getName()) + "\r\n");
                 outfile.write(String.valueOf(ServerData.characters.get(x).getImageSrc()) + "\r\n");
@@ -117,7 +120,7 @@ public class ServerData {
 
     public static void readItemList(){
         try {
-            File infile = new File("D:\\helpful\\Java\\server\\src\\main\\java\\com\\example\\demo\\serverData\\itemList.txt");
+            File infile = new File(basePath + "java\\com\\example\\demo\\serverData\\itemList.txt");
             Scanner myReader = new Scanner(infile);
             int lineCount = 0;
             String name = "";
@@ -156,7 +159,7 @@ public class ServerData {
 
     public static void writeItemList(){
         try {
-            FileWriter outfile = new FileWriter("D:\\helpful\\Java\\server\\src\\main\\java\\com\\example\\demo\\serverData\\itemList.txt");
+            FileWriter outfile = new FileWriter(basePath + "java\\com\\example\\demo\\serverData\\itemList.txt");
             for(int x = 0; x < ServerData.itemList.size(); x++){
                 outfile.write(String.valueOf(ServerData.itemList.get(x).getId()) + "\r\n");
                 outfile.write(String.valueOf(ServerData.itemList.get(x).getName()) + "\r\n");

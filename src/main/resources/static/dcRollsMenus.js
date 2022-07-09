@@ -130,7 +130,7 @@ function addAnotherDropListElement(charName,listId, elementId){
                 dropListElem.remove();
 
                 var xmlHttp = new XMLHttpRequest();
-                xmlHttp.open( "GET", serverAddress+"removeDropListElement?info="+charName+";"+listId+"_"+elementId, false);
+                xmlHttp.open( "GET", serverAddress+"removeDropListElement?info="+encodeURIComponent(charName+";"+listId+"_"+elementId), false);
                 xmlHttp.send( null );
                 
             }
@@ -159,7 +159,7 @@ function updateInfoAboutDropList(charName, droppListId){
         infoToSend +=";"+String(document.getElementById(charName + "DropList" + droppListId + "Elem" + droppingList.elementsIds[i]).innerText);
     }
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", serverAddress+"updateDropListInfo?info="+infoToSend, false);
+    xmlHttp.open( "GET", serverAddress+"updateDropListInfo?info="+encodeURIComponent(infoToSend), false);
     xmlHttp.send( null );
 }
 
@@ -171,7 +171,7 @@ function verifyInfoAboutDropList(charName, droppListId){
     let infoToSend = String(charName);
     infoToSend +=";"+String(droppListId);
     let xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", serverAddress+"getDropListInfo?info="+infoToSend, false);
+    xmlHttp.open( "GET", serverAddress+"getDropListInfo?info="+encodeURIComponent(infoToSend), false);
     xmlHttp.send( null );
     let serverResponse = xmlHttp.responseText;
     console.log(serverResponse);

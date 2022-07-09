@@ -36,7 +36,7 @@ function removeItem(tempItem){
     }
     //remove on server
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", serverAddress+"removeItem?info="+infoToSend, false);
+    xmlHttp.open( "GET", serverAddress+"removeItem?info="+encodeURIComponent(infoToSend), false);
     xmlHttp.send( null );
 }
   
@@ -79,7 +79,59 @@ function transformItemSecTypeToBoxId(charPageName, newItem){
     return "none";
 }
   
-function equipUnequipItem(newItem){
+function equipUnequipItem(newItemId){
+  let newItem = items[newItemId];
+  if (newItem.itemSecondaryType == "quickBar"){
+    
+    // just unequip
+    if (newItem.equipped){
+      
+      //find slot where it is and free it
+      let charpage = document.getElementById(newItem.whoseItemIs + "CharPage");
+      for (let i = 0; i < 9; i++){
+        if (charpage.quickBarItemIds[i] != newItem.itemId){
+          continue;
+        }
+        charpage.quickBarFill[i] = false;
+        charpage.quickBarItemIds[i] = -1;
+        break;
+      }
+        
+      //find a cell in inventory to place item in
+      currentPage = newItem.itemType;
+      newItem.itemCell = findFreeCell();
+      currentPage = newItem.itemType;
+    }
+      
+    //just equip
+    else if (!newItem.equipped){
+      //find first free slot
+      let boxid = -1;
+      for (let i = 0; i < 9; i++){
+        let charpage = document.getElementById(newItem.whoseItemIs + "CharPage");
+        if (charpage.quickBarFill[i] == false){
+          boxid = i;
+          charpage.quickBarFill[i] = true;
+          charpage.quickBarItemIds[i] = newItem.itemId;
+          break;
+        }
+      }     
+      //check if id or type is correct
+      if (boxid == -1){
+        alert("no free slot available!"); 
+        return;
+      }
+    }
+
+    newItem.equipped = newItem.equipped ? false : true;
+    placeItemsInCells();
+    displayOnlyThisType(currentPage);
+    updateItemInfo(findIndexInItems(newItem.itemId));
+    return;
+  }
+
+
+
     //get box id according to type
     let charPageName = newItem.whoseItemIs + "CharPage";
     let boxid = transformItemSecTypeToBoxId(charPageName, newItem);
@@ -88,8 +140,9 @@ function equipUnequipItem(newItem){
       alert("equipment subtype is not valid!"); 
       return;
     }
-  
-    //equip or unequip 
+
+    //_________equip or unequip____________\\
+
     let boxOfEquipment = document.getElementById(boxid);
   
     //ocuppied - unequip one that occupies
@@ -108,13 +161,15 @@ function equipUnequipItem(newItem){
     boxOfEquipment.occupied = false;
     if (!newItem.equipped){
       boxOfEquipment.occupied = true;
-      boxOfEquipment.occupationItemId = newItem.itemId;
+      if (newItem.itemSecondaryType != "quickBar"){
+        boxOfEquipment.occupationItemId = newItem.itemId;
+      }
       newItem.style.top = boxOfEquipment.getBoundingClientRect().top + 'px';
       newItem.style.left = boxOfEquipment.getBoundingClientRect().left +'px';
     }
 
+
     //change cell on first free without equipped on the appropriate page
-    let currentPaget = currentPage;
     currentPage = newItem.itemType;
     newItem.itemCell = findFreeCell();
     console.log(newItem.itemCell);
@@ -127,6 +182,44 @@ function equipUnequipItem(newItem){
     updateItemInfo(findIndexInItems(newItem.itemId));
 }
 
+function splitItemAmount(newItemId){
+  let newItem = items[newItemId];
+  let inputField = document.createElement("div");
+  inputField.contentEditable = true;
+  inputField.classList.add("inputField");
+  inputField.innerText = String(Math.floor(newItem.itemAmount/2));
+  document.querySelector("body").appendChild(inputField);
+
+  let confirmField = document.createElement("div");
+  confirmField.classList.add("confirmField");
+  confirmField.innerText = "confirm";
+  confirmField.addEventListener('click',function(){
+    constructNewItem(newItem.itemIconSrc, findFreeCell());
+    items[items.length-1].itemName = newItem.itemName;
+    items[items.length-1].itemDescription = newItem.itemDescription;
+    items[items.length-1].itemAmount = parseInt(inputField.innerText);
+    items[items.length-1].itemSecondaryType = newItem.itemSecondaryType;
+    
+    newItem.itemAmount -= parseInt(inputField.innerText);
+
+    updateItemInfo(findIndexInItems(newItem.itemId));
+    constructNewItemOnServer(items.length - 1);
+    inputField.remove();
+    confirmField.remove();
+    cancelField.remove();
+  });
+  document.querySelector("body").appendChild(confirmField);
+
+  let cancelField = document.createElement("div");
+  cancelField.classList.add("cancelField");
+  cancelField.innerText = "cancel";
+  cancelField.addEventListener('click',function(){
+    inputField.remove();
+    confirmField.remove();
+    cancelField.remove();
+  });
+  document.querySelector("body").appendChild(cancelField);
+}
 
 function preCreateItemContextMenu(){
   let contextMenut = document.getElementById("itemPrimaryContext-menu");
@@ -135,6 +228,7 @@ function preCreateItemContextMenu(){
   const deleteItemButton = document.getElementById("deleteItemButton");
   const equipItemButton = document.getElementById("equipItemButton");
   const changeIconItemButton = document.getElementById("changeIconItemButton");
+  const SplitItemButton = document.getElementById("SplitItemButton");
 
   //_________________deleting listener
   deleteItemButton.addEventListener("click", function(){
@@ -148,13 +242,14 @@ function preCreateItemContextMenu(){
   equipItemButton.addEventListener("click", function(){
     let contextMenu = document.getElementById("itemPrimaryContext-menu");
     let newItem = items[findIndexInItems(contextMenu.enactingItemId)];
+    let newItemId = findIndexInItems(contextMenu.enactingItemId);
     //delete context menu
     contextMenu.classList.remove("visible");
     //remove description if any
     if (document.getElementById("tempDesc")){
       document.getElementById("tempDesc").remove();
     }
-    equipUnequipItem(newItem);
+    equipUnequipItem(newItemId);
   });
 
   //_________________change icon listener
@@ -162,6 +257,14 @@ function preCreateItemContextMenu(){
     let contextMenu = document.getElementById("itemPrimaryContext-menu");
     contextMenu.classList.remove("visible");
     handleChangingItemIcon(1);
+  });
+
+  //_________________split listener
+  SplitItemButton.addEventListener("click", function(){
+    let contextMenu = document.getElementById("itemPrimaryContext-menu");
+    contextMenu.classList.remove("visible");
+    let newItemId = findIndexInItems(contextMenu.enactingItemId);
+    splitItemAmount(newItemId);
   });
 }
 

@@ -33,7 +33,7 @@ function constructItemDescription(tempElement){
     var cellWidth = baseElement.getBoundingClientRect().width/8.;
   
     newDescription.style.top = tempElement.getBoundingClientRect().top + 'px';
-    newDescription.style.left = tempElement.getBoundingClientRect().left + cellWidth - 1 +'px';
+    newDescription.style.left = tempElement.getBoundingClientRect().left + tempElement.getBoundingClientRect().width - 1 +'px';
     newDescription.style.zIndex = "1";
     
     //name section
@@ -54,6 +54,42 @@ function constructItemDescription(tempElement){
     DescDesc.style.zIndex = "1";
     newDescription.appendChild(DescDesc);
 
+    //amount section
+    let minusAmount = document.createElement("div");
+    minusAmount.contentEditable = false;
+    minusAmount.classList.add("itemDescription-itemAmountButt");
+    minusAmount.id = "tempMinusAmount";
+    minusAmount.innerHTML = "-";
+    minusAmount.style.zIndex = "1";
+    minusAmount.addEventListener('click',function(){
+      if (parseInt(document.getElementById("tempAmount").innerText)>=1){
+        document.getElementById("tempAmount").innerText = String(parseInt(document.getElementById("tempAmount").innerText)-1);
+      }
+    })
+
+    newDescription.appendChild(minusAmount);
+
+    let amount = document.createElement("div");
+    amount.contentEditable = true;
+    amount.classList.add("itemDescription-itemAmount");
+    amount.id = "tempAmount";
+    amount.style.fontSize = "16px";
+    amount.innerHTML = String(tempElement.itemAmount);
+    amount.style.zIndex = "1";
+    newDescription.appendChild(amount);
+
+    let plusAmount = document.createElement("div");
+    plusAmount.contentEditable = false;
+    plusAmount.classList.add("itemDescription-itemAmountButt");
+    plusAmount.id = "tempPlusAmount";
+    plusAmount.innerHTML = "+";
+    plusAmount.style.zIndex = "1";
+    newDescription.appendChild(plusAmount);
+    plusAmount.addEventListener('click',function(){
+      document.getElementById("tempAmount").innerText = String(parseInt(document.getElementById("tempAmount").innerText)+1);
+    })
+
+
     //type section
     let descType = document.createElement("div");
     descType.contentEditable = false;
@@ -62,7 +98,7 @@ function constructItemDescription(tempElement){
     descType.innerHTML = tempElement.itemType;
     descType.style.zIndex = "1";
     //newDescription.appendChild(descType);
-
+    
     //secondary type section
     let secType = document.createElement("div");
     secType.contentEditable = false;
@@ -70,9 +106,9 @@ function constructItemDescription(tempElement){
     secType.id = "tempSecType";
     secType.innerHTML = tempElement.itemSecondaryType;
     secType.style.zIndex = "1";
-    newDescription.appendChild(secType);
-  
-  
+    //newDescription.appendChild(secType);
+
+
     var text = "Name: " + tempElement.itemName + "<br>";
     text = text + "Weight: " + tempElement.itemWeight.toString() + "<br>";
     text = text + "Description: " + tempElement.itemDescription + "<br>";
@@ -84,23 +120,22 @@ function constructItemDescription(tempElement){
       tempElement.itemDescription = DescDesc.innerText;
       tempElement.itemType = descType.innerText;
       tempElement.itemSecondaryType = secType.innerText;
+      tempElement.itemAmount = parseInt(amount.innerText);
       console.log(tempElement.itemName);
       updateItemInfo(findIndexInItems(tempElement.itemId));
-      /*if(document.getElementById("tempDescHeader")){
-        document.getElementById("tempDescHeader").remove();
-      }
-      if(document.getElementById("tempDescDesc")){
-        document.getElementById("tempDescDesc").remove();
-      }
-      if(document.getElementById("tempType")){
-        document.getElementById("tempType").remove();
-      }
-      if(document.getElementById("tempSecType")){
-        document.getElementById("tempSecType").remove();
-      }*/
       removeTempDescription();
     });
     document.querySelector("body").appendChild(newDescription);
+
+    //place it inside main window
+    let windowWidth = window.innerWidth;
+    let windowHeight = window.innerHeight;
+    if ( windowWidth - newDescription.getBoundingClientRect().right < 4){
+      newDescription.style.right = windowWidth - newDescription.getBoundingClientRect().width - 4 + "px";
+    }
+    if ( windowHeight - newDescription.getBoundingClientRect().bottom < 4){
+      newDescription.style.top = windowHeight - newDescription.getBoundingClientRect().height - 4 + "px";
+    }
 }
   
 function findIndexInItems(tempId){
@@ -149,7 +184,7 @@ function constructNewItemOnServer(itemIndex){
     infoToSend +=";"+String(items[itemIndex].itemSecondaryType);
     infoToSend +=";"+String(items[itemIndex].itemIconSrc);
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", serverAddress+"genNewItem?info="+infoToSend, false);
+    xmlHttp.open( "GET", serverAddress+"genNewItem?info="+encodeURIComponent(infoToSend), false);
     xmlHttp.send( null );
 }
   
@@ -173,6 +208,14 @@ function manageItemContextMenu(event, newItem){
   contextMenu.classList.add("visible");
   contextMenu.style.top = `${mouseY}px`;
   contextMenu.style.left = `${mouseX}px`;
+  let windowWidth = window.innerWidth;
+  let windowHeight = window.innerHeight;
+  if ( windowWidth - contextMenu.getBoundingClientRect().right < 4){
+    contextMenu.style.right = windowWidth - contextMenu.getBoundingClientRect().width - 4 + "px";
+  }
+  if ( windowHeight - contextMenu.getBoundingClientRect().bottom < 4){
+    contextMenu.style.top = windowHeight - contextMenu.getBoundingClientRect().height - 4 + "px";
+  }
 
    //_________________quiting context menu listener
   document.querySelector("body").addEventListener("click",e => {
@@ -198,12 +241,12 @@ function constructNewItem(image,cellNumber){
     newItem.style.width = 2.5 + '%';
     //newItem.style.height = 2.5 + '%';
     newItem.src = image;
-    newItem.itemName = "wand on intelligence";
+    newItem.itemName = "new item";
     newItem.itemType = currentPage;
     newItem.itemWeight = 10;
     newItem.itemVolume = 10;
     newItem.itemAmount = 1;
-    newItem.itemDescription = "asdasd";
+    newItem.itemDescription = "no description yet";
     newItem.itemCell = cellNumber;
     newItem.itemId = findFirstFreeId();
     newItem.itemSecondaryType = "random Stuff";
@@ -218,7 +261,7 @@ function constructNewItem(image,cellNumber){
     newItem.addEventListener("mouseenter", function(){
       removeTempDescription();
       constructItemDescription(newItem);
-      newItem.addEventListener("mouseout", removeTempDescription, once=true);
+      newItem.addEventListener("mouseout", removeTempDescription);
       newItem.addEventListener('auxclick', function(e) {
         if (e.button == 1) {
           newItem.removeEventListener("mouseout", removeTempDescription, once=true);
@@ -242,17 +285,26 @@ function constructNewItem(image,cellNumber){
       for (let i = 0; i < itemTypes.length; i++){
         let typeButton = document.getElementById(itemTypes[i]);
         if(typeButton.hoverYN == true){
-          newItem.itemType = itemTypes[i];
-
-          //place item in free spot on new tab because they can have the same cell number on different pages with another item
-          if (!newItem.equipped){
-            let currentPaget = currentPage;
-            currentPage = itemTypes[i];
-            newItem.itemCell = findFreeCell();
-            currentPage = currentPaget;
+          let currentPaget = currentPage;
+          currentPage = itemTypes[i];
+          let sameName = false;
+          for (let j = 0; j < items.length; j++){
+            if (items[j].itemType == currentPage && items[j].whoseItemIs == currentCharacter && items[j].itemName == newItem.itemName){
+              items[j].itemAmount += newItem.itemAmount;
+              sameName = true;
+              removeItem(newItem);
+              updateItemInfo(findIndexInItems(items[j].itemId));
+            }
           }
-
-          updateItemInfo(findIndexInItems(newItem.itemId));
+          if (!sameName){
+            //place item in free spot on new tab because they can have the same cell number on different pages with another item
+            if (!newItem.equipped){  
+              newItem.itemCell = findFreeCell();
+            }
+            newItem.itemType = itemTypes[i];
+            console.log(newItem.itemType);
+            updateItemInfo(findIndexInItems(newItem.itemId));
+          }
           displayOnlyThisType(currentPage);
         }
       }
@@ -266,22 +318,59 @@ function constructNewItem(image,cellNumber){
           updateItemInfo(findIndexInItems(newItem.itemId));
         }
       }
+      for (let i = 0; i < 9; i++){
+        let quickBarSocket = document.getElementById("quickBarCell" + i.toString());
+        if(quickBarSocket.hoverYN == true){
+          newItem.itemSecondaryType = "quickBar";
+          updateItemInfo(findIndexInItems(newItem.itemId));
+        }
+      }
 
       //if drag final point is one of the character icon buttons - change their owner
       for (let i = 0; i < users.length; i++){
         let charbutton = document.getElementById(users[i] + "CharPage" + "IconButton");
         if(charbutton.hoverYN == true){
-          newItem.whoseItemIs = users[i];
-          updateItemInfo(findIndexInItems(newItem.itemId));
-          displayOnlyThisType(currentPage);
+          let sameName = false;
+          for (let j = 0; j < items.length; j++){
+            if (items[j].itemType == currentPage && items[j].whoseItemIs == users[i] && items[j].itemName == newItem.itemName){
+              items[j].itemAmount += newItem.itemAmount;
+              sameName = true;
+              removeItem(newItem);
+              updateItemInfo(findIndexInItems(items[j].itemId));
+            }
+          }
+          if (!sameName){
+            newItem.whoseItemIs = users[i];
+            updateItemInfo(findIndexInItems(newItem.itemId));
+            displayOnlyThisType(currentPage);
+          }
         }
       }
     })
+    newItem.addEventListener('click',function(){
+      if (newItem.itemSecondaryType == "quickBar" && newItem.equipped){
+        let infoToSend = newItem.whoseItemIs + " wants to use " + newItem.itemName;
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", serverAddress+"setSpeech?info="+encodeURIComponent(infoToSend), false);
+        xmlHttp.send( null );
+      }
+    });
+
     
+    let amountText = document.createElement("div");
+    amountText.innerText = String(newItem.itemAmount);
+    amountText.style.fontSize = "10px";
+    amountText.style.position = "absolute";
+    amountText.style.bottom = "5%";
+    amountText.style.right = "5%";
+    amountText.style.zIndex = "1000";
+    newItem.appendChild(amountText);
+
     //append webpage with new item and push back items
     items.push(newItem);
     var index = items.length - 1;
     document.querySelector("body").appendChild(items[index]);
+
     
 }
 
@@ -298,7 +387,15 @@ function placeItemInCell(newItem){
     }
     let charPageName = newItem.whoseItemIs + "CharPage";
     let boxid = transformItemSecTypeToBoxId(charPageName, newItem);
+    if (newItem.itemSecondaryType == "quickBar"){
+      for (let i = 0; i < 9; i++){
+        if (charpage.quickBarItemIds[i] == newItem.itemId){
+          boxid = "quickBarCell" + i.toString();;
+        }
+      }
+    }
     let boxOfEquipment = document.getElementById(boxid);
+    newItem.style.width = boxOfEquipment.getBoundingClientRect().width + 'px';
     newItem.style.top = boxOfEquipment.getBoundingClientRect().top + 'px';
     newItem.style.left = boxOfEquipment.getBoundingClientRect().left +'px';
     return;
@@ -310,6 +407,7 @@ function placeItemInCell(newItem){
   var cellY = (cellNumber-cellNumber%8)/8;
   newItem.style.top = baseElement.getBoundingClientRect().top + cellY * cellWidth + 'px';
   newItem.style.left = baseElement.getBoundingClientRect().left + cellX * cellWidth +'px';
+  newItem.style.width = 2.5 + '%';
   //newItem.style.width = cellWidth + 'px';
   //newItem.style.height = cellWidth + 'px';
   return;
@@ -420,7 +518,8 @@ function updateItemInfo(itemIndex){
     infoToSend +=";"+String(items[itemIndex].itemSecondaryType);
     infoToSend +=";"+String(items[itemIndex].itemIconSrc);
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", serverAddress+"updateItemParameters?info="+infoToSend, false);
+    console.log(infoToSend);
+    xmlHttp.open( "GET", serverAddress+"updateItemParameters?info="+encodeURIComponent(infoToSend), false);
     xmlHttp.send( null );
 }
 
@@ -462,7 +561,7 @@ function updateItemsInfo(newParString){
       else if (serverItemIndex == -1 && infoArrayParameters.length == 11){
         let currentPaget = currentPage;
         currentPage = infoArrayParameters[2];
-        constructNewItem('images/box.png', findFreeCell());
+        constructNewItem('images/items/box.png', findFreeCell());
         currentPage = currentPaget;
         setItemParameters(items.length - 1,infoArrayParameters);
         items[items.length - 1].style.transitionDuration = "0s";
@@ -470,10 +569,25 @@ function updateItemsInfo(newParString){
         if(items[items.length - 1].equipped==true){
           let charPageName = items[items.length - 1].whoseItemIs + "CharPage";
           let boxid = transformItemSecTypeToBoxId(charPageName, items[items.length - 1]);
+          if (items[items.length - 1].itemSecondaryType == "quickBar"){
+            let charpage = document.getElementById(charPageName);
+            let foundYN = false;
+            for (let i = 0; i < 9; i++){
+              if (charpage.quickBarItemIds[i] == items[items.length - 1].itemId){
+                boxid = "quickBarCell" + i.toString();
+                foundYN = true;
+              }
+            }
+            if (!foundYN){
+              items[items.length - 1].equipped=false;
+              equipUnequipItem(items.length - 1);
+              boxid = "none";
+            }
+          }
           if (boxid!="none"){
             if (document.getElementById(boxid).occupied == false){
               items[items.length - 1].equipped=false;
-              equipUnequipItem(items[items.length - 1]);
+              equipUnequipItem(items.length - 1);
             }
           }
         }

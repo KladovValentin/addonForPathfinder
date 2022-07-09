@@ -1,14 +1,14 @@
 0
-cloak of resistance
+new item
 equipment
-1 save throw
+4+6 points
 10.0
 10.0
-1
-true
+3
+false
 Oliver
-back
-images/items/cloak.png
+random Stuff
+images/items/box.png
 
 1
 crossbow
@@ -16,7 +16,7 @@ equipment
 asdasd
 10.0
 10.0
-1
+2
 true
 Oliver
 left hand
@@ -45,18 +45,6 @@ true
 Oliver
 ring
 images/items/ring.png
-
-4
-item for quest x
-questItems
-exclamation mark with strange shape
-10.0
-10.0
-1
-false
-Oliver
-random Stuff
-images/items/quest item type.png
 
 5
 leather armor
@@ -140,5 +128,17 @@ asdasd
 true
 Oliver
 boots
-file:///D:/helpful/Java/server/src/main/resources/static/images/items/boots.png
+images/items/boots.png
+
+4
+healing potion
+questItems
+restores 1d6 5 hp
+10.0
+10.0
+3
+true
+Oliver
+quickBar
+images/items/potion.png
 

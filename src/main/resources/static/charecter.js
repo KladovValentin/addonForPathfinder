@@ -15,6 +15,9 @@ class characterPageInfo{
         this.socketsIds = ["righthand", "lefthand" , "armor" , "back" , "leftbracer" ,  "rightbracer" , "ring1" , "ring2" , "ring3" , "ring4"];
         this.socketsTypes = ["right hand", "left hand" , "armor" , "back" , "left bracer" ,  "right bracer" , "ring" , "ring" , "ring" , "ring"];
 
+        this.quickBarFill = [false,false,false,false,false,false,false,false,false];
+        this.quickBarItemIds = [-1,-1,-1,-1,-1,-1,-1,-1,-1];
+
         this.droppingDownLists = [];
     }
 }
@@ -37,7 +40,7 @@ function constructEquipmentBoxName(name,top,left,width){
     return equipmentBoxName;
 }
 
-function constructEquipmentBox(charName, baseImage, name, cellId, localX, localY){
+function constructEquipmentBox(charName, name, cellId, localX, localY){
     let box1 = document.createElement("img");
 
     //define box itself parameters - coordinates, position, image, width
@@ -62,7 +65,7 @@ function constructEquipmentBox(charName, baseImage, name, cellId, localX, localY
     //adding event listener with description
     box1.addEventListener("mouseenter", function(){
         if(document.getElementById("tDCharacterPage")){
-          document.getElementById("tDCharacterPage").remove();
+            document.getElementById("tDCharacterPage").remove();
         }
         document.getElementById(charName + "CharPage").appendChild(constructEquipmentBoxName(name,top,left,boxWidth));
 
@@ -140,10 +143,10 @@ function constructCharacterImage(charName,image){
 function constructCharacterBoxes(charName){
     var newCharacterPage = document.getElementById(charName+"CharPage");
     for (let i = 0; i < 6; i++){
-        newCharacterPage.appendChild( constructEquipmentBox (charName, document.getElementById(charName+"CharPage"+"Image"), newCharacterPage.socketsNames[i], newCharacterPage.socketsIds[i], 2.5, 5+15*i) );
+        newCharacterPage.appendChild( constructEquipmentBox (charName, newCharacterPage.socketsNames[i], newCharacterPage.socketsIds[i], 2.5, 5+15*i) );
     }
-    for (let i = 0; i < 6; i++){
-        newCharacterPage.appendChild( constructEquipmentBox (charName, document.getElementById(charName+"CharPage"+"Image"), newCharacterPage.socketsNames[i+6], newCharacterPage.socketsIds[i+6], 50-2.5-6.25, 5+15*i) );
+    for (let i = 0; i < newCharacterPage.socketsNames.length - 6; i++){
+        newCharacterPage.appendChild( constructEquipmentBox (charName, newCharacterPage.socketsNames[i+6], newCharacterPage.socketsIds[i+6], 50-2.5-6.25, 5+15*i) );
     }
 }
 
@@ -157,6 +160,8 @@ function constructCharacterPage(charName, image){
     charPage.socketsNames = ["right hand", "left hand" , "head" , "armor" , "back" , "boots" , "left bracer" ,  "right bracer" , "ring 1" , "ring 2" , "ring 3" , "ring 4"];
     charPage.socketsIds = ["righthand", "lefthand" , "head" , "armor" , "back" , "boots", "leftbracer" ,  "rightbracer" , "ring1" , "ring2" , "ring3" , "ring4"];
     charPage.socketsTypes = ["right hand", "left hand" , "head" , "armor" , "back" , "boots", "left bracer" ,  "right bracer" , "ring" , "ring" , "ring" , "ring"];
+    charPage.quickBarFill = [false,false,false,false,false,false,false,false,false];
+    charPage.quickBarItemIds = [-1,-1,-1,-1,-1,-1,-1,-1,-1];
     charPage.droppingDownLists = [];
     //quickBar.innerHTML = "I am quick bar";
     charPage.id = charName+"CharPage";
@@ -207,7 +212,7 @@ function updateCharacterParameters(charName){
     infoToSend +="_"+String(locCharPage.charName);
     infoToSend +=";"+String(locCharPage.charImage);
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", serverAddress+"updateCharacterParameters?info="+infoToSend, false);
+    xmlHttp.open( "GET", serverAddress+"updateCharacterParameters?info="+encodeURIComponent(infoToSend), false);
     xmlHttp.send( null );
 }
 
@@ -328,7 +333,7 @@ function createNewCharacter(charName){
     let infoToSend = String(charName);
     infoToSend +=";"+String("images/character.jpg");
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", serverAddress+"genNewCharacter?info="+infoToSend, false);
+    xmlHttp.open( "GET", serverAddress+"genNewCharacter?info="+encodeURIComponent(infoToSend), false);
     xmlHttp.send( null );
 }
 
@@ -380,7 +385,7 @@ function removeCharacter(charName){
     //remove on server
     var xmlHttp = new XMLHttpRequest();
     let infoToSend = String(charName);
-    xmlHttp.open( "GET", serverAddress+"removeCharacter?info="+infoToSend, false);
+    xmlHttp.open( "GET", serverAddress+"removeCharacter?info="+encodeURIComponent(infoToSend), false);
     xmlHttp.send( null );
     console.log(xmlHttp.responseText);
 }

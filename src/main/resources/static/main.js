@@ -42,12 +42,26 @@ function defineInventoryButtons(){
   });
 }
 
+function checkSpeach(){
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open( "GET", serverAddress+"checkSpeech", false);
+  xmlHttp.send( null );
+  console.log(xmlHttp.responseText);
+  if (xmlHttp.responseText != "none"){
+    speakText(xmlHttp.responseText);
+  }
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open( "GET", serverAddress+"setSpeech?info="+"", false);
+  xmlHttp.send( null );
+}
+
 function updateInfo() {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open( "GET", serverAddress+"getUpdates", false);
   xmlHttp.send( null );
   var serverResponse = xmlHttp.responseText;
   //console.log(serverResponse);
+  checkSpeach();
   updateItemsInfo(serverResponse);
   displayOnlyThisType(currentPage);
   placeItemsInCells();

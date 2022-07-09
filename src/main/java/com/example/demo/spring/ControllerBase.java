@@ -301,4 +301,18 @@ public class ControllerBase {
         System.out.println(answer);
         return answer;
     }
+
+    //_________________________________Voice section________________________________
+    @CrossOrigin()
+    @GetMapping("/checkSpeech")
+    public String checkSpeech(){
+        return ServerData.voiceText;
+    }
+
+    @CrossOrigin()
+    @GetMapping("/setSpeech")
+    public String setSpeech(@RequestParam(value = "info", defaultValue = "none") String info){
+        ServerData.voiceText = info;
+        return "";
+    }
 }

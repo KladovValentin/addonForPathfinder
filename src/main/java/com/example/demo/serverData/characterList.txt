@@ -1,6 +1,6 @@
 Oliver
 images/chars/Oliver.webp
-Attack;1;/roll d20
+Attack;1;/roll d20+5-2
 Attack;0;letBe
 Ac;0;12
 next Character
