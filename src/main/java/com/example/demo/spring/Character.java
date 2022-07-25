@@ -27,7 +27,7 @@ public class Character {
     public void setImageSrc(String newImageSrc) { this.imageSrc = newImageSrc; }
 
     public void setNewParameters(String newParameters) {
-        String[] parts = newParameters.split(";");
+        String[] parts = newParameters.split("-`-");
         String name = parts[0];
         String imageSrc = parts[1];
         setName(name);

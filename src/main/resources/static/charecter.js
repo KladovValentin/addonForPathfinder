@@ -79,6 +79,7 @@ function constructEquipmentBox(charName, name, cellId, localX, localY){
     // dragging
     box1.addEventListener("dragover", (event) => {
         event.preventDefault();
+        box1.style.zIndex = "1000";
       });
     box1.addEventListener("drop", (event) => {
         event.preventDefault();
@@ -86,6 +87,7 @@ function constructEquipmentBox(charName, name, cellId, localX, localY){
     });
     box1.addEventListener("mouseleave",function(){
         box1.hoverYN = false;
+        box1.style.zIndex = "0";
     });
     return box1;
 }
@@ -135,7 +137,9 @@ function constructCharacterImage(charName,image){
     });
 
     newCharacterPage.appendChild(imageCharacter);
-    newCharacterPage.style.height = String(imageCharacter.style.height) + "px";
+    let imageWithHeight = document.getElementById(charName+"CharPage"+"Image");
+    //console.log(imageWithHeight.getBoundingClientRect().height);
+    //newCharacterPage.style.height = imageWithHeight.getBoundingClientRect().height + "px";
 }
 
 
@@ -157,9 +161,9 @@ function constructCharacterPage(charName, image){
     charPage.classList.add("characterPageInfo");
     charPage.charName = charName;
     charPage.charImage = image;
-    charPage.socketsNames = ["right hand", "left hand" , "head" , "armor" , "back" , "boots" , "left bracer" ,  "right bracer" , "ring 1" , "ring 2" , "ring 3" , "ring 4"];
-    charPage.socketsIds = ["righthand", "lefthand" , "head" , "armor" , "back" , "boots", "leftbracer" ,  "rightbracer" , "ring1" , "ring2" , "ring3" , "ring4"];
-    charPage.socketsTypes = ["right hand", "left hand" , "head" , "armor" , "back" , "boots", "left bracer" ,  "right bracer" , "ring" , "ring" , "ring" , "ring"];
+    charPage.socketsNames = ["primary", "secondary" , "head" , "armor" , "extra armor" , "back" , "boots" , "bracers" , "amulet" , "belt" , "accessory 1" , "accessory 2"];
+    charPage.socketsIds = ["primary", "secondary" , "head" , "armor" , "extraAarmor" , "back" , "boots", "bracers" , "amulet" , "belt" , "accessory1" , "accessory2"];
+    charPage.socketsTypes = ["primary", "secondary" , "head" , "armor" , "extra armor" , "back" , "boots" , "bracers" , "amulet" , "belt" , "accessory 1" , "accessory 2"];
     charPage.quickBarFill = [false,false,false,false,false,false,false,false,false];
     charPage.quickBarItemIds = [-1,-1,-1,-1,-1,-1,-1,-1,-1];
     charPage.droppingDownLists = [];
@@ -182,12 +186,22 @@ function constructCharacterPages(){
     console.log(serverResponse);
     let paramArray = serverResponse.split("_");
     for(let i = 0; i < paramArray.length; i++){
-        let infoArrayParameters = paramArray[i].split(";");
+        let infoArrayParameters = paramArray[i].split("-`-");
         users.push(infoArrayParameters[0]);
+        currentCharacter = infoArrayParameters[0];
         constructCharacterPage(infoArrayParameters[0], infoArrayParameters[1]);
     }
     currentCharacter = users[0];
     createManageCharacterButtons();
+}
+
+function addjustCharPageHeight(){
+    for(let i = 0; i < users.length; i++){
+        let imageWithHeight = document.getElementById(users[i]+"CharPage"+"Image");
+        let newCharacterPage = document.getElementById(users[i]+"CharPage");
+        //console.log(imageWithHeight.getBoundingClientRect().height);
+        newCharacterPage.style.height = imageWithHeight.getBoundingClientRect().height + "px";
+    }
 }
 
 function showOnlyThisCharPage(charName){
@@ -210,8 +224,9 @@ function updateCharacterParameters(charName){
     let locCharPage = document.getElementById(charName + "CharPage");
     let infoToSend = String(locCharPage.charName);
     infoToSend +="_"+String(locCharPage.charName);
-    infoToSend +=";"+String(locCharPage.charImage);
+    infoToSend +="-`-"+String(locCharPage.charImage);
     var xmlHttp = new XMLHttpRequest();
+    console.log(locCharPage.charImage);
     xmlHttp.open( "GET", serverAddress+"updateCharacterParameters?info="+encodeURIComponent(infoToSend), false);
     xmlHttp.send( null );
 }
@@ -281,6 +296,7 @@ function constructCharIconButton(charName){
     icon.addEventListener("click", function(){
         currentCharacter = charName;
         showOnlyThisCharPage(currentCharacter);
+        addjustCharPageHeight();
     });
 
     // dragging
@@ -331,7 +347,7 @@ function createNewCharacter(charName){
     showOnlyThisCharPage(currentCharacter);
 
     let infoToSend = String(charName);
-    infoToSend +=";"+String("images/character.jpg");
+    infoToSend +="-`-"+String("images/chars/character.jpg");
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", serverAddress+"genNewCharacter?info="+encodeURIComponent(infoToSend), false);
     xmlHttp.send( null );

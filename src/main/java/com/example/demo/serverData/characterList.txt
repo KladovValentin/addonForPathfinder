@@ -1,9 +1,21 @@
-Oliver
-images/chars/Oliver.webp
-Attack;1;/roll d20+5-2
-Attack;0;letBe
-Ac;0;12
+GM
+images/chars/gm.jpg
+Damage;0;asdasd
+Damage;1;ggggas
+Ac;0;sadsad
 next Character
-Rem
-images/chars/character.jpg
+Velarion
+images/chars/velarion.jpg
+next Character
+BlackJack
+images/chars/blackjack.jpg
+next Character
+Chudelkin
+images/chars/chudelkin.png
+next Character
+Nyolan
+images/chars/barbarian.jpg
+next Character
+Hyakkimaru
+images/chars/Akihiko.jpg
 next Character

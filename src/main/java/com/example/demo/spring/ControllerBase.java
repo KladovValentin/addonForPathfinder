@@ -82,7 +82,7 @@ public class ControllerBase {
     @CrossOrigin()
     @GetMapping("/genNewItem")
     public String genNewItem(@RequestParam(value = "info", defaultValue = "none") String info) {
-        String[] parts = info.split(";");
+        String[] parts = info.split("-`-");
         String name = parts[1];
         String type = parts[2];
         String description = parts[3];
@@ -135,16 +135,16 @@ public class ControllerBase {
     public String getUpdates() {
         String answer = "";
         for(int x = 0; x < ServerData.itemList.size(); x++){
-            answer = answer + String.valueOf(ServerData.itemList.get(x).getId()) + ";";
-            answer = answer + String.valueOf(ServerData.itemList.get(x).getName()) + ";";
-            answer = answer + String.valueOf(ServerData.itemList.get(x).getType()) + ";";
-            answer = answer + String.valueOf(ServerData.itemList.get(x).getDescription()) + ";";
-            answer = answer + String.valueOf(ServerData.itemList.get(x).getWeight()) + ";";
-            answer = answer + String.valueOf(ServerData.itemList.get(x).getVolume()) + ";";
-            answer = answer + String.valueOf(ServerData.itemList.get(x).getAmount()) + ";";
-            answer = answer + String.valueOf(ServerData.itemList.get(x).getEquipped()) + ";";
-            answer = answer + String.valueOf(ServerData.itemList.get(x).getWhoseItemIs()) + ";";
-            answer = answer + String.valueOf(ServerData.itemList.get(x).getItemSecondaryType()) + ";";
+            answer = answer + String.valueOf(ServerData.itemList.get(x).getId()) + "-`-";
+            answer = answer + String.valueOf(ServerData.itemList.get(x).getName()) + "-`-";
+            answer = answer + String.valueOf(ServerData.itemList.get(x).getType()) + "-`-";
+            answer = answer + String.valueOf(ServerData.itemList.get(x).getDescription()) + "-`-";
+            answer = answer + String.valueOf(ServerData.itemList.get(x).getWeight()) + "-`-";
+            answer = answer + String.valueOf(ServerData.itemList.get(x).getVolume()) + "-`-";
+            answer = answer + String.valueOf(ServerData.itemList.get(x).getAmount()) + "-`-";
+            answer = answer + String.valueOf(ServerData.itemList.get(x).getEquipped()) + "-`-";
+            answer = answer + String.valueOf(ServerData.itemList.get(x).getWhoseItemIs()) + "-`-";
+            answer = answer + String.valueOf(ServerData.itemList.get(x).getItemSecondaryType()) + "-`-";
             answer = answer + String.valueOf(ServerData.itemList.get(x).getIconSrc());
             if(x < ServerData.itemList.size() - 1){
                 answer = answer + "_";
@@ -157,7 +157,7 @@ public class ControllerBase {
     @CrossOrigin()
     @GetMapping("/genNewCharacter")
     public String genNewCharacter(@RequestParam(value = "info", defaultValue = "none") String info) {
-        String[] parts = info.split(";");
+        String[] parts = info.split("-`-");
         String name = parts[0];
         String imageSrc = parts[1];
         ServerData.characters.add(new Character(name,imageSrc));
@@ -204,7 +204,7 @@ public class ControllerBase {
     public String getCharactersInfo() {
         String answer = "";
         for(int x = 0; x < ServerData.characters.size(); x++){
-            answer = answer + String.valueOf(ServerData.characters.get(x).getName()) + ";";
+            answer = answer + String.valueOf(ServerData.characters.get(x).getName()) + "-`-";
             answer = answer + String.valueOf(ServerData.characters.get(x).getImageSrc());
             if(x < ServerData.characters.size() - 1){
                 answer = answer + "_";
@@ -218,8 +218,8 @@ public class ControllerBase {
     @GetMapping("/updateDropListInfo")
     public String updateDropListInfo(@RequestParam(value = "info", defaultValue = "none") String info) {
         String[] parts = info.split("_");
-        String charName = parts[0].split(";")[0];
-        String dropListId = parts[0].split(";")[1];
+        String charName = parts[0].split("-`-")[0];
+        String dropListId = parts[0].split("-`-")[1];
         int charIndex = 0;
         for(int x = 0; x < ServerData.characters.size(); x++){
             if(ServerData.characters.get(x).getName().equals(charName)){
@@ -238,8 +238,8 @@ public class ControllerBase {
     @GetMapping("/removeDropListElement")
     public String removeDropListElement(@RequestParam(value = "info", defaultValue = "none") String info) {
         String[] parts = info.split("_");
-        String charName = parts[0].split(";")[0];
-        String dropListId = parts[0].split(";")[1];
+        String charName = parts[0].split("-`-")[0];
+        String dropListId = parts[0].split("-`-")[1];
         int charIndex = 0;
         for(int x = 0; x < ServerData.characters.size(); x++){
             if(ServerData.characters.get(x).getName().equals(charName)){
@@ -254,8 +254,8 @@ public class ControllerBase {
     @CrossOrigin()
     @GetMapping("/getDropListInfo")
     public String getDropListInfo(@RequestParam(value = "info", defaultValue = "none") String info) {
-        String charName = info.split(";")[0];
-        String dropListId = info.split(";")[1];
+        String charName = info.split("-`-")[0];
+        String dropListId = info.split("-`-")[1];
         int charIndex = 0;
         for(int x = 0; x < ServerData.characters.size(); x++){
             if(ServerData.characters.get(x).getName().equals(charName)){
@@ -265,7 +265,7 @@ public class ControllerBase {
         }
         String answer = "";
         for(int x = 0; x < ServerData.characters.get(charIndex).getDropList(dropListId).elements.size(); x++){
-            answer = answer + String.valueOf(ServerData.characters.get(charIndex).getDropList(dropListId).getId(x)) + ";";
+            answer = answer + String.valueOf(ServerData.characters.get(charIndex).getDropList(dropListId).getId(x)) + "-`-";
             answer = answer + String.valueOf(ServerData.characters.get(charIndex).getDropList(dropListId).getText(x));
             if(x < ServerData.characters.get(charIndex).getDropList(dropListId).elements.size() - 1){
                 answer = answer + "_";
@@ -283,7 +283,7 @@ public class ControllerBase {
         for(int x = 0; x < ServerData.itemIcons.size(); x++){
             answer = answer + String.valueOf(ServerData.itemIcons.get(x));
             if(x < ServerData.itemIcons.size() - 1){
-                answer = answer + ";";
+                answer = answer + "-`-";
             }
         }
         return answer;
@@ -295,7 +295,7 @@ public class ControllerBase {
         for(int x = 0; x < ServerData.charIcons.size(); x++){
             answer = answer + String.valueOf(ServerData.charIcons.get(x));
             if(x < ServerData.charIcons.size() - 1){
-                answer = answer + ";";
+                answer = answer + "-`-";
             }
         }
         System.out.println(answer);

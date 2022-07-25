@@ -101,7 +101,7 @@ public class Item {
     }
 
     public void setNewParameters(String newParameters) {
-        String[] parts = newParameters.split(";");
+        String[] parts = newParameters.split("-`-");
         String name = parts[1];
         String type = parts[2];
         String description = parts[3];

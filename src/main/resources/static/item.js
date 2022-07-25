@@ -117,7 +117,7 @@ function constructItemDescription(tempElement){
       //var newText = newDescription.innerText;
       //let newItemParameters = newText.split("\n");
       tempElement.itemName = headerName.innerText;
-      tempElement.itemDescription = DescDesc.innerText;
+      tempElement.itemDescription = DescDesc.innerHTML;
       tempElement.itemType = descType.innerText;
       tempElement.itemSecondaryType = secType.innerText;
       tempElement.itemAmount = parseInt(amount.innerText);
@@ -173,16 +173,16 @@ function removeFromListById(tempId){
 function constructNewItemOnServer(itemIndex){
     // send info about newly created item to the server
     var infoToSend = String(items[itemIndex].itemId);
-    infoToSend +=";"+String(items[itemIndex].itemName);
-    infoToSend +=";"+String(items[itemIndex].itemType);
-    infoToSend +=";"+String(items[itemIndex].itemDescription);
-    infoToSend +=";"+String(items[itemIndex].itemWeight);
-    infoToSend +=";"+String(items[itemIndex].itemVolume);
-    infoToSend +=";"+String(items[itemIndex].itemAmount);
-    infoToSend +=";"+stringFromBool(items[itemIndex].equipped);
-    infoToSend +=";"+String(items[itemIndex].whoseItemIs);
-    infoToSend +=";"+String(items[itemIndex].itemSecondaryType);
-    infoToSend +=";"+String(items[itemIndex].itemIconSrc);
+    infoToSend +="-`-"+String(items[itemIndex].itemName);
+    infoToSend +="-`-"+String(items[itemIndex].itemType);
+    infoToSend +="-`-"+String(items[itemIndex].itemDescription);
+    infoToSend +="-`-"+String(items[itemIndex].itemWeight);
+    infoToSend +="-`-"+String(items[itemIndex].itemVolume);
+    infoToSend +="-`-"+String(items[itemIndex].itemAmount);
+    infoToSend +="-`-"+stringFromBool(items[itemIndex].equipped);
+    infoToSend +="-`-"+String(items[itemIndex].whoseItemIs);
+    infoToSend +="-`-"+String(items[itemIndex].itemSecondaryType);
+    infoToSend +="-`-"+String(items[itemIndex].itemIconSrc);
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", serverAddress+"genNewItem?info="+encodeURIComponent(infoToSend), false);
     xmlHttp.send( null );
@@ -264,7 +264,7 @@ function constructNewItem(image,cellNumber){
       newItem.addEventListener("mouseout", removeTempDescription);
       newItem.addEventListener('auxclick', function(e) {
         if (e.button == 1) {
-          newItem.removeEventListener("mouseout", removeTempDescription, once=true);
+          newItem.removeEventListener("mouseout", removeTempDescription);
         }
       })
       myTimeout = setTimeout(function() {
@@ -507,16 +507,16 @@ function updateItemInfo(itemIndex){
     //send info about item to the server after changing name, description etc
     var infoToSend = String(items[itemIndex].itemId);
     infoToSend +="_"+String(items[itemIndex].itemId);
-    infoToSend +=";"+String(items[itemIndex].itemName);
-    infoToSend +=";"+String(items[itemIndex].itemType);
-    infoToSend +=";"+String(items[itemIndex].itemDescription);
-    infoToSend +=";"+String(items[itemIndex].itemWeight);
-    infoToSend +=";"+String(items[itemIndex].itemVolume);
-    infoToSend +=";"+String(items[itemIndex].itemAmount);
-    infoToSend +=";"+stringFromBool(items[itemIndex].equipped);
-    infoToSend +=";"+String(items[itemIndex].whoseItemIs);
-    infoToSend +=";"+String(items[itemIndex].itemSecondaryType);
-    infoToSend +=";"+String(items[itemIndex].itemIconSrc);
+    infoToSend +="-`-"+String(items[itemIndex].itemName);
+    infoToSend +="-`-"+String(items[itemIndex].itemType);
+    infoToSend +="-`-"+String(items[itemIndex].itemDescription);
+    infoToSend +="-`-"+String(items[itemIndex].itemWeight);
+    infoToSend +="-`-"+String(items[itemIndex].itemVolume);
+    infoToSend +="-`-"+String(items[itemIndex].itemAmount);
+    infoToSend +="-`-"+stringFromBool(items[itemIndex].equipped);
+    infoToSend +="-`-"+String(items[itemIndex].whoseItemIs);
+    infoToSend +="-`-"+String(items[itemIndex].itemSecondaryType);
+    infoToSend +="-`-"+String(items[itemIndex].itemIconSrc);
     var xmlHttp = new XMLHttpRequest();
     console.log(infoToSend);
     xmlHttp.open( "GET", serverAddress+"updateItemParameters?info="+encodeURIComponent(infoToSend), false);
@@ -548,7 +548,7 @@ function updateItemsInfo(newParString){
     var serverIds = [];
     let infoArrayItems = newParString.split("_");
     for(let i = 0; i < infoArrayItems.length; i++){
-      let infoArrayParameters = infoArrayItems[i].split(";");
+      let infoArrayParameters = infoArrayItems[i].split("-`-");
       var serverItemIndex = findIndexInItems(parseInt(infoArrayParameters[0]));
   
       //update if exists
@@ -580,18 +580,18 @@ function updateItemsInfo(newParString){
             }
             if (!foundYN){
               items[items.length - 1].equipped=false;
-              equipUnequipItem(items.length - 1);
+              equipUnequipItemBase(items.length - 1);
               boxid = "none";
             }
           }
           if (boxid!="none"){
             if (document.getElementById(boxid).occupied == false){
               items[items.length - 1].equipped=false;
-              equipUnequipItem(items.length - 1);
+              equipUnequipItemBase(items.length - 1);
             }
           }
         }
-        items[items.length - 1].style.transitionDuration = "0.2s";
+        items[items.length - 1].style.transitionDuration = "0.01s";
         serverIds.push(parseInt(infoArrayParameters[0]));
       }
     }

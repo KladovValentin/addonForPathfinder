@@ -61,6 +61,7 @@ function updateInfo() {
   xmlHttp.send( null );
   var serverResponse = xmlHttp.responseText;
   //console.log(serverResponse);
+  addjustCharPageHeight();
   checkSpeach();
   updateItemsInfo(serverResponse);
   displayOnlyThisType(currentPage);
@@ -73,6 +74,13 @@ createItemIcons();
 preCreateItemContextMenu();
 preCreateCharImageContextMenu();
 showOnlyThisCharPage(currentCharacter);
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Enter') {
+    document.execCommand('insertLineBreak');
+    event.preventDefault()
+  }
+})
 
 /*function mousemove(event){
   console.log("pageX: ",event.pageX, 

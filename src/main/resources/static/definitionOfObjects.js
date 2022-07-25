@@ -1,4 +1,3 @@
 
-
 constructCharacterPages();
 constructQuickBar();

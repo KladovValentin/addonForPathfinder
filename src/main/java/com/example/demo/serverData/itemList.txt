@@ -1,144 +1,442 @@
-0
-new item
+1
+cloak of resistance +1
 equipment
-4+6 points
+These garments offer magic protection in the form of a +1 to +5 resistance bonus on all saving throws (Fortitude, Reflex, and Will).
+end of description
 10.0
 10.0
-3
+1
 false
-Oliver
+GM
 random Stuff
-images/items/box.png
-
-1
-crossbow
-equipment
-asdasd
-10.0
-10.0
-2
-true
-Oliver
-left hand
-images/items/crossbow.png
+images/items/cloak.png
 
 2
-ring 2
+cloak of resistance +1
 equipment
-ring 2
+These garments offer magic protection in the form of a +1 to +5 resistance bonus on all saving throws (Fortitude, Reflex, and Will).
+end of description
 10.0
 10.0
 1
 true
-Oliver
-ring
-images/items/ring.png
+Velarion
+back
+images/items/cloak.png
 
 3
-ring 30 fire res
+cloak of resistance +2
 equipment
-grants wielder 30 percent fire resistance
+These garments offer magic protection in the form of a +1 to +5 resistance bonus on all saving throws (Fortitude, Reflex, and Will).
+end of description
 10.0
 10.0
 1
 true
-Oliver
-ring
-images/items/ring.png
+BlackJack
+back
+images/items/cloak.png
 
-5
-leather armor
+4
+belt of dexterity, constitution
 equipment
-2 AC
++2 dex, +2 con
+end of description
 10.0
 10.0
 1
-true
-Oliver
-armor
-images/items/armor.png
-
-6
-wand on intelligence
-equipment
-asdasd
-10.0
-10.0
-1
-true
-Oliver
-ring
+false
+GM
+random Stuff
 images/items/belt.png
 
-7
-wand on intelligence
+5
+belt of dexterity, constitution
 equipment
-asdasd
++2 dex, +2 con
+end of description
 10.0
 10.0
 1
 true
-Oliver
-ring
-images/items/amulet.png
+Velarion
+belt
+images/items/belt.png
 
-8
-wand on intelligence
+6
+eagle glasses
 equipment
-asdasd
++5 perception
+end of description
 10.0
 10.0
 1
 true
-Oliver
-right hand
-images/items/sword.png
-
-9
-wand on intelligence
-randomStuff
-/roll d20 5 2
-10.0
-10.0
-1
-false
-Rem
-random Stuff
-images/items/scroll.png
-
-11
-wand on intelligence
-equipment
-asdasd
-10.0
-10.0
-1
-true
-Oliver
+Velarion
 head
-images/items/helmet.png
+images/items/glasses.png
 
-10
-wand on intelligence
+7
+cat paw boots
 equipment
-asdasd
++1 steals and smth else
+end of description
 10.0
 10.0
 1
 true
-Oliver
+Velarion
 boots
 images/items/boots.png
 
+8
+autolutnya
+randomStuff
+wtf is this shit
+end of description
+10.0
+10.0
+1
+false
+Velarion
+random Stuff
+images/items/box.png
+
+9
+chalenger's gloves
+equipment
+no description yet
+end of description
+10.0
+10.0
+1
+true
+Velarion
+bracers
+images/items/gloves.png
+
+10
+signal horn of the wind king
+equipment
+no description yet
+end of description
+10.0
+10.0
+1
+true
+Velarion
+primary
+images/items/box.png
+
+11
+amulet wisdom +2
+equipment
++2 wisdom
+end of description
+10.0
+10.0
+1
+true
+Velarion
+amulet
+images/items/amulet2.png
+
+12
+knife
+equipment
+generic
+end of description
+10.0
+10.0
+1
+true
+Velarion
+secondary
+images/items/dagger.png
+
+13
+scarabey
+equipment
+no description yet
+end of description
+10.0
+10.0
+1
+true
+Velarion
+accessory 1
+images/items/amulet.png
+
+14
+potion of shield
+spendable
+no description yet
+end of description
+10.0
+10.0
+2
+true
+Velarion
+quickBar
+images/items/potion.png
+
+15
+potion of shield
+spendable
+no description yet
+end of description
+10.0
+10.0
 4
-healing potion
-questItems
-restores 1d6 5 hp
+false
+GM
+random Stuff
+images/items/potion.png
+
+16
+cure light wounds
+spendable
+no description yet
+end of description
+10.0
+10.0
+6
+false
+GM
+quickBar
+images/items/potionLife.png
+
+17
+cure moderate wounds
+spendable
+no description yet
+end of description
+10.0
+10.0
+3
+false
+GM
+random Stuff
+images/items/potionLife.png
+
+18
+cure moderate wounds
+spendable
+no description yet
+end of description
+10.0
+10.0
+1
+true
+Velarion
+quickBar
+images/items/potionLife.png
+
+19
+cure light wounds
+spendable
+no description yet
+end of description
+10.0
+10.0
+1
+true
+Velarion
+quickBar
+images/items/potionLife.png
+
+20
+lesser talisman of sealed summon
+equipment
+no description yet
+end of description
+10.0
+10.0
+1
+false
+Velarion
+random Stuff
+images/items/amulet2.png
+
+0
+cold iron +3 katana
+equipment
+1d8 dmg, crit range: 3. <br>dual-balanced (+1 atk)<br>price ~8k
+end of description
+10.0
+10.0
+1
+true
+Hyakkimaru
+primary
+file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/dagger.png
+
+21
+mithral shirt +2
+equipment
+6 max dex, 0 penalty, 6 AC (4+3), <br>price ~10k
+end of description
+10.0
+10.0
+1
+true
+Hyakkimaru
+armor
+file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/chainmail.png
+
+22
+cold iron keen wakizashi +1
+equipment
+1d6 dmg (+mods), 15-20 crit range, <br>dual-balances (+1 attack rolls)<br>price ~8k
+end of description
+10.0
+10.0
+1
+true
+Hyakkimaru
+secondary
+file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/dagger.png
+
+23
+amulet of natural armor +1
+equipment
+natural AC +1, <br>price 2k
+end of description
+10.0
+10.0
+1
+true
+Hyakkimaru
+amulet
+file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/amulet.png
+
+24
+cloak of resistance +2
+equipment
+These garments offer magic protection in the form of a +1 to +5 resistance bonus on all saving throws (Fortitude, Reflex, and Will). <br>Price 4k
+end of description
+10.0
+10.0
+1
+true
+Hyakkimaru
+back
+images/items/cloak.png
+
+25
+belt of giant strength +2
+equipment
++2 ench bonus to str, <br>price 4k
+end of description
+10.0
+10.0
+1
+true
+Hyakkimaru
+belt
+file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/belt.png
+
+26
+ring dex+1
+equipment
++1 ench bonus to dex, <br>price 1k
+end of description
+10.0
+10.0
+1
+true
+Hyakkimaru
+accessory 1
+file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/ring.png
+
+27
+ring of protection +1
+equipment
++1 deflect bonus to AC,<br>price 8k
+end of description
+10.0
+10.0
+1
+true
+Hyakkimaru
+accessory 2
+file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/ring.png
+
+28
+cure moderate wounds
+spendable
+no description yet
+end of description
 10.0
 10.0
 3
 true
-Oliver
+Hyakkimaru
+quickBar
+images/items/potionLife.png
+
+29
+potion of shield
+spendable
+no description yet
+end of description
+10.0
+10.0
+3
+true
+Hyakkimaru
 quickBar
 images/items/potion.png
+
+30
+potion of bull's strength
+spendable
++4 ench bonus to atr, 1 min
+end of description
+10.0
+10.0
+7
+false
+GM
+random Stuff
+file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/potion.png
+
+31
++1 breastplate
+randomStuff
+no description yet
+end of description
+10.0
+10.0
+1
+false
+GM
+random Stuff
+file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/armor.png
+
+32
++1 heavy steel shield
+randomStuff
+no description yet
+end of description
+10.0
+10.0
+1
+false
+GM
+random Stuff
+file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/shield.jpg
+
+33
++2 ghost touch longsword
+randomStuff
+no description yet
+end of description
+10.0
+10.0
+1
+false
+GM
+random Stuff
+file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/sword.png
 

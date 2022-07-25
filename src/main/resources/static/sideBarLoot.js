@@ -9,9 +9,9 @@
 function createOpenCloseSideBarSwitch(){
     let sideBarLootOpenClose = document.getElementById("sideBarOpenClose");
 
-    sideBarLootOpenClose.style.right = "20%";
+    sideBarLootOpenClose.style.right = "0%";
     sideBarLootOpenClose.style.top = "20px";
-    sideBarLootOpenClose.innerHTML = "&gt;";
+    sideBarLootOpenClose.innerHTML = "&lt;";
 
     sideBarLootOpenClose.addEventListener("mouseenter",function(){
         let sideBarLoot = document.getElementById("sideBarLoot");

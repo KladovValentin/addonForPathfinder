@@ -22,7 +22,7 @@ function createDroppingList(charName, listId, listName){
     let tempCharacter = document.getElementById(charName+"CharPage");
     let position = tempCharacter.droppingDownLists.length;
     tempCharacter.droppingDownLists.push(listId);
-    droppingListContainer.style.top = 10 + position * 10 + "%";
+    droppingListContainer.style.top = 10 + position * 20 + "%";
     droppingListContainer.style.left = "51" + "%";
     tempCharacter.appendChild(droppingListContainer);
 
@@ -130,7 +130,7 @@ function addAnotherDropListElement(charName,listId, elementId){
                 dropListElem.remove();
 
                 var xmlHttp = new XMLHttpRequest();
-                xmlHttp.open( "GET", serverAddress+"removeDropListElement?info="+encodeURIComponent(charName+";"+listId+"_"+elementId), false);
+                xmlHttp.open( "GET", serverAddress+"removeDropListElement?info="+encodeURIComponent(charName+"-`-"+listId+"_"+elementId), false);
                 xmlHttp.send( null );
                 
             }
@@ -147,16 +147,16 @@ function updateInfoAboutDropList(charName, droppListId){
 
     // info how to find this droplist
     let infoToSend = String(charName);
-    infoToSend +=";"+String(droppListId);
+    infoToSend +="-`-"+String(droppListId);
     // split
     infoToSend +="_";
     for (let i = 0; i < droppingList.elementsIds.length; i++){
         // element id to find one and text
         if (i != 0){
-            infoToSend +=";";
+            infoToSend +="-`-";
         }
         infoToSend += String(droppingList.elementsIds[i]);
-        infoToSend +=";"+String(document.getElementById(charName + "DropList" + droppListId + "Elem" + droppingList.elementsIds[i]).innerText);
+        infoToSend +="-`-"+String(document.getElementById(charName + "DropList" + droppListId + "Elem" + droppingList.elementsIds[i]).innerText);
     }
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", serverAddress+"updateDropListInfo?info="+encodeURIComponent(infoToSend), false);
@@ -169,7 +169,7 @@ function verifyInfoAboutDropList(charName, droppListId){
     let droppingList = document.getElementById(charName + "DropList" + droppListId);
 
     let infoToSend = String(charName);
-    infoToSend +=";"+String(droppListId);
+    infoToSend +="-`-"+String(droppListId);
     let xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", serverAddress+"getDropListInfo?info="+encodeURIComponent(infoToSend), false);
     xmlHttp.send( null );
@@ -181,7 +181,7 @@ function verifyInfoAboutDropList(charName, droppListId){
     let paramArray = serverResponse.split("_");
     for(let i = 0; i < paramArray.length; i++){
         let exsist = false;
-        let infoArrayParameters = paramArray[i].split(";");
+        let infoArrayParameters = paramArray[i].split("-`-");
         for (let i = 0; i < droppingList.elementsIds.length; i++){
             //find corresponding element
             if (droppingList.elementsIds[i] != infoArrayParameters[0]){
@@ -209,7 +209,7 @@ function verifyInfoAboutDropList(charName, droppListId){
     /*for (let i = 0; i < droppingList.elementsIds.length; i++){
         let deleteElYN = true;
         for(let j = 0; j < paramArray.length; j++){
-            let infoArrayParameters = paramArray[j].split(";");
+            let infoArrayParameters = paramArray[j].split("-`-");
             if (droppingList.elementsIds[i] != infoArrayParameters[0]){
                 continue;
             }

@@ -138,7 +138,12 @@ public class ServerData {
                 id = Integer.parseInt(myReader.nextLine());
                 name = myReader.nextLine();
                 type = myReader.nextLine();
-                description = myReader.nextLine();
+                String newLine = myReader.nextLine();
+                description = "";
+                while(!newLine.equals("end of description")){
+                    description = description + newLine;
+                    newLine = myReader.nextLine();
+                }
                 weight = Float.parseFloat(myReader.nextLine());
                 volume = Float.parseFloat(myReader.nextLine());
                 amount = Integer.parseInt(myReader.nextLine());
@@ -165,6 +170,7 @@ public class ServerData {
                 outfile.write(String.valueOf(ServerData.itemList.get(x).getName()) + "\r\n");
                 outfile.write(String.valueOf(ServerData.itemList.get(x).getType()) + "\r\n");
                 outfile.write(String.valueOf(ServerData.itemList.get(x).getDescription()) + "\r\n");
+                outfile.write(String.valueOf("end of description") + "\r\n");
                 outfile.write(String.valueOf(ServerData.itemList.get(x).getWeight()) + "\r\n");
                 outfile.write(String.valueOf(ServerData.itemList.get(x).getVolume()) + "\r\n");
                 outfile.write(String.valueOf(ServerData.itemList.get(x).getAmount()) + "\r\n");

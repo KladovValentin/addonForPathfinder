@@ -79,7 +79,7 @@ function transformItemSecTypeToBoxId(charPageName, newItem){
     return "none";
 }
   
-function equipUnequipItem(newItemId){
+function equipUnequipItemBase(newItemId){
   let newItem = items[newItemId];
   if (newItem.itemSecondaryType == "quickBar"){
     
@@ -126,7 +126,6 @@ function equipUnequipItem(newItemId){
     newItem.equipped = newItem.equipped ? false : true;
     placeItemsInCells();
     displayOnlyThisType(currentPage);
-    updateItemInfo(findIndexInItems(newItem.itemId));
     return;
   }
 
@@ -136,6 +135,7 @@ function equipUnequipItem(newItemId){
     let charPageName = newItem.whoseItemIs + "CharPage";
     let boxid = transformItemSecTypeToBoxId(charPageName, newItem);
     //check if id or type is correct
+    console.log(boxid);
     if (boxid == "none"){
       alert("equipment subtype is not valid!"); 
       return;
@@ -179,7 +179,11 @@ function equipUnequipItem(newItemId){
 
     placeItemsInCells();
     displayOnlyThisType(currentPage);
-    updateItemInfo(findIndexInItems(newItem.itemId));
+}
+function equipUnequipItem(newItemId){
+  let newItem = items[newItemId];
+  equipUnequipItemBase(newItemId);
+  updateItemInfo(findIndexInItems(newItem.itemId));
 }
 
 function splitItemAmount(newItemId){
@@ -196,6 +200,7 @@ function splitItemAmount(newItemId){
   confirmField.addEventListener('click',function(){
     constructNewItem(newItem.itemIconSrc, findFreeCell());
     items[items.length-1].itemName = newItem.itemName;
+    items[items.length-1].itemIconSrc = newItem.itemIconSrc;
     items[items.length-1].itemDescription = newItem.itemDescription;
     items[items.length-1].itemAmount = parseInt(inputField.innerText);
     items[items.length-1].itemSecondaryType = newItem.itemSecondaryType;
@@ -290,7 +295,7 @@ function createItemIcons(){
     xmlHttp.open( "GET", serverAddress+"getItemIconFileNames", false);
     xmlHttp.send( null );
     var serverResponse = xmlHttp.responseText;
-    let fileNames = serverResponse.split(";");
+    let fileNames = serverResponse.split("-`-");
     for(let i = 0; i < fileNames.length; i++){
       itemIconsFileList.push(fileNames[i]);
     }
@@ -298,7 +303,7 @@ function createItemIcons(){
     xmlHttp2.open( "GET", serverAddress+"getCharIconFileNames", false);
     xmlHttp2.send( null );
     let serverResponse1 = xmlHttp2.responseText;
-    let fileNames1 = serverResponse1.split(";");
+    let fileNames1 = serverResponse1.split("-`-");
     for(let i = 0; i < fileNames1.length; i++){
       charIconsFileList.push(fileNames1[i]);
     }
@@ -337,6 +342,7 @@ function createItemIcons(){
       let icont = document.createElement("img");
       icont.classList.add("itemIcon");
       icont.id = "changeCharIconItem"+String(i);
+      let sourcet = "images/chars/" + charIconsFileList[i];
       icont.src = "images/chars/" + charIconsFileList[i];
       icont.style.display = "none";
 
@@ -350,8 +356,9 @@ function createItemIcons(){
         let contextMenu = document.getElementById("imageCharacterContext-menu");
         let locImage = document.getElementById(contextMenu.enactingCharName + "CharPage" + "Image");
         let locCharPage = document.getElementById(contextMenu.enactingCharName + "CharPage");
-        locImage.src = icont.src;
-        locCharPage.charImage = icont.src;
+        locImage.src = sourcet;
+        console.log(sourcet);
+        locCharPage.charImage = sourcet;
         placeItemsInCells();
         updateCharacterParameters(contextMenu.enactingCharName);
         for(let j = 0; j < charIconsFileList.length; j++){
