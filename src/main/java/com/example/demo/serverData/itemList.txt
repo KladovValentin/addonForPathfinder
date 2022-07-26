@@ -269,7 +269,7 @@ end of description
 true
 Hyakkimaru
 primary
-file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/dagger.png
+images/items/dagger.png
 
 21
 mithral shirt +2
@@ -282,7 +282,7 @@ end of description
 true
 Hyakkimaru
 armor
-file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/chainmail.png
+images/items/chainmail.png
 
 22
 cold iron keen wakizashi +1
@@ -295,7 +295,7 @@ end of description
 true
 Hyakkimaru
 secondary
-file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/dagger.png
+images/items/dagger.png
 
 23
 amulet of natural armor +1
@@ -308,7 +308,7 @@ end of description
 true
 Hyakkimaru
 amulet
-file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/amulet.png
+images/items/amulet.png
 
 24
 cloak of resistance +2
@@ -334,7 +334,7 @@ end of description
 true
 Hyakkimaru
 belt
-file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/belt.png
+images/items/belt.png
 
 26
 ring dex+1
@@ -347,7 +347,7 @@ end of description
 true
 Hyakkimaru
 accessory 1
-file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/ring.png
+images/items/ring.png
 
 27
 ring of protection +1
@@ -360,7 +360,7 @@ end of description
 true
 Hyakkimaru
 accessory 2
-file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/ring.png
+images/items/ring.png
 
 28
 cure moderate wounds
@@ -399,7 +399,7 @@ end of description
 false
 GM
 random Stuff
-file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/potion.png
+images/items/potion.png
 
 31
 +1 breastplate
@@ -412,7 +412,7 @@ end of description
 false
 GM
 random Stuff
-file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/armor.png
+images/items/armor.png
 
 32
 +1 heavy steel shield
@@ -425,7 +425,7 @@ end of description
 false
 GM
 random Stuff
-file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/shield.jpg
+images/items/shield.jpg
 
 33
 +2 ghost touch longsword
@@ -438,5 +438,109 @@ end of description
 false
 GM
 random Stuff
-file:///D:/helpful/Java/addonForPathfinder/src/main/resources/static/images/items/sword.png
+images/items/sword.png
+
+34
+headband
+equipment
++1 intelligence
+end of description
+10.0
+10.0
+1
+false
+GM
+head
+http://26.3.41.21:8080/images/items/helmet.png
+
+35
+boots of speed
+equipment
++10 movement per round
+end of description
+10.0
+10.0
+1
+false
+GM
+boots
+http://26.3.41.21:8080/images/items/boots.png
+
+36
+hp potion
+spendable
+1d8+10 hp refill
+end of description
+10.0
+10.0
+1
+true
+Chudelkin
+quickBar
+http://26.3.41.21:8080/images/items/potionLife.png
+
+37
+hp potion
+spendable
+1d8+10 hp refill
+end of description
+10.0
+10.0
+3
+false
+GM
+quickBar
+http://26.3.41.21:8080/images/items/potionLife.png
+
+38
+mana potion
+spendable
+restores mana
+end of description
+10.0
+10.0
+2
+true
+TempChar
+quickBar
+http://26.3.41.21:8080/images/items/potion.png
+
+39
+mana potion
+spendable
+restores mana
+end of description
+10.0
+10.0
+7
+true
+Chudelkin
+quickBar
+http://26.3.41.21:8080/images/items/potion.png
+
+40
+new item
+spendable
+no description yet
+end of description
+10.0
+10.0
+1
+false
+TempChar
+random Stuff
+http://26.3.41.21:8080/images/items/glasses.png
+
+41
+new item
+questItems
+no description yet
+end of description
+10.0
+10.0
+1
+false
+Hyakkimaru
+random Stuff
+http://26.3.41.21:8080/images/items/crystal.jpg
 

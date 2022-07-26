@@ -19,3 +19,6 @@ next Character
 Hyakkimaru
 images/chars/Akihiko.jpg
 next Character
+TempChar
+images/chars/paladin.webp
+next Character
