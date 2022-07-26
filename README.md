@@ -11,4 +11,4 @@ To run it:
 
 Of course there will be problems, because I haven't tested how it works on different PC :)
 
-You can find screenshots and video at "video" folder
+You can find screenshots and video at "info" folder
