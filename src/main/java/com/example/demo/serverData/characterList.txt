@@ -1,8 +1,13 @@
 GM
 images/chars/gm.jpg
+Attack;0;cdb
+Attack;1;bcb
 Damage;0;asdasd
 Damage;1;ggggas
-Ac;0;sadsad
+Damage;2;abc
+Ac;0;25 - touch
+Ac;1;30 - normal
+Ac;2;31 - with cats grace
 next Character
 Velarion
 images/chars/velarion.jpg
@@ -18,7 +23,4 @@ images/chars/barbarian.jpg
 next Character
 Hyakkimaru
 images/chars/Akihiko.jpg
-next Character
-TempChar
-images/chars/paladin.webp
 next Character

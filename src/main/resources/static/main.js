@@ -46,7 +46,7 @@ function checkSpeach(){
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.open( "GET", serverAddress+"checkSpeech", false);
   xmlHttp.send( null );
-  console.log(xmlHttp.responseText);
+  //console.log(xmlHttp.responseText);
   if (xmlHttp.responseText != "none"){
     speakText(xmlHttp.responseText);
   }

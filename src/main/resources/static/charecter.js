@@ -68,18 +68,21 @@ function constructEquipmentBox(charName, name, cellId, localX, localY){
             document.getElementById("tDCharacterPage").remove();
         }
         document.getElementById(charName + "CharPage").appendChild(constructEquipmentBoxName(name,top,left,boxWidth));
-
-        box1.addEventListener("mouseleave", function(){
-            if(document.getElementById("tDCharacterPage")){
-                document.getElementById("tDCharacterPage").remove();
-            }
-        });
+    });
+    box1.addEventListener("mouseleave", function(){
+        if(document.getElementById("tDCharacterPage")){
+            document.getElementById("tDCharacterPage").remove();
+        }
     });
 
     // dragging
     box1.addEventListener("dragover", (event) => {
         event.preventDefault();
         box1.style.zIndex = "1000";
+        if(document.getElementById("tDCharacterPage")){
+            document.getElementById("tDCharacterPage").remove();
+        }
+        document.getElementById(charName + "CharPage").appendChild(constructEquipmentBoxName(name,top,left,boxWidth));
       });
     box1.addEventListener("drop", (event) => {
         event.preventDefault();
@@ -88,6 +91,9 @@ function constructEquipmentBox(charName, name, cellId, localX, localY){
     box1.addEventListener("mouseleave",function(){
         box1.hoverYN = false;
         box1.style.zIndex = "0";
+        if(document.getElementById("tDCharacterPage")){
+            document.getElementById("tDCharacterPage").remove();
+        }
     });
     return box1;
 }
@@ -297,6 +303,7 @@ function constructCharIconButton(charName){
         currentCharacter = charName;
         showOnlyThisCharPage(currentCharacter);
         addjustCharPageHeight();
+        showOnlyThisCharPage(currentCharacter);
     });
 
     // dragging

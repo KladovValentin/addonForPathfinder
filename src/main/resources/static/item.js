@@ -28,6 +28,7 @@ function constructItemDescription(tempElement){
     newDescription.contentEditable = true;
     newDescription.classList.add("itemDescription");  //style
     newDescription.id = "tempDesc";
+    
   
     var baseElement = document.getElementById("net8x8");  //net on which item is
     var cellWidth = baseElement.getBoundingClientRect().width/8.;
@@ -375,6 +376,7 @@ function constructNewItem(image,cellNumber){
 }
 
 function placeItemInCell(newItem){
+  newItem.style.transitionDuration = "0s";
   if(newItem.equipped == true){
     let charpage = document.getElementById(newItem.whoseItemIs + "CharPage");
     for (let i = 0; i < charpage.socketsIds.length; i++){
@@ -410,6 +412,7 @@ function placeItemInCell(newItem){
   newItem.style.width = 2.5 + '%';
   //newItem.style.width = cellWidth + 'px';
   //newItem.style.height = cellWidth + 'px';
+  newItem.style.transitionDuration = "0.2s";
   return;
 }
   
@@ -426,7 +429,7 @@ function sortItems(){
     var sortItemsIndexes = [];
     //choose which are on this page
     for (let i = 0; i < items.length; i++) {
-      if (items[i].itemType == currentPage && items[i].equipped == false){
+      if (items[i].itemType == currentPage && items[i].whoseItemIs == currentCharacter && items[i].equipped == false){
         sortTags.push(items[i].itemName);
         sortItemsIndexes.push(i);
       }
@@ -436,8 +439,8 @@ function sortItems(){
       for (let j = 0; j < sortTags.length - i -1; j++) {
         if (sortTags[j] > sortTags[j + 1]) {
           var tp = sortTags[j];
-                  sortTags[j] = sortTags[j+1];
-                  sortTags[j+1] = tp;
+          sortTags[j] = sortTags[j+1];
+          sortTags[j+1] = tp;
           
           tp = sortItemsIndexes[j];
           sortItemsIndexes[j] = sortItemsIndexes[j+1];
@@ -561,10 +564,13 @@ function updateItemsInfo(newParString){
       else if (serverItemIndex == -1 && infoArrayParameters.length == 11){
         let currentPaget = currentPage;
         currentPage = infoArrayParameters[2];
+        let currentChart = currentCharacter;
+        currentCharacter = infoArrayParameters[8];
         constructNewItem('images/items/box.png', findFreeCell());
+        currentCharacter = currentChart;
         currentPage = currentPaget;
         setItemParameters(items.length - 1,infoArrayParameters);
-        items[items.length - 1].style.transitionDuration = "0s";
+        items[items.length - 1].style.transitionDuration = "0.0s";
         //transfer to equipment if equipment
         if(items[items.length - 1].equipped==true){
           let charPageName = items[items.length - 1].whoseItemIs + "CharPage";
@@ -591,7 +597,7 @@ function updateItemsInfo(newParString){
             }
           }
         }
-        items[items.length - 1].style.transitionDuration = "0.01s";
+        items[items.length - 1].style.transitionDuration = "0.2s";
         serverIds.push(parseInt(infoArrayParameters[0]));
       }
     }

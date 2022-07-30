@@ -22,7 +22,7 @@ public class DropList {
     }
 
     public void updateDropListElementsInfo(String inputInfo){
-        String[] parts = inputInfo.split(";");
+        String[] parts = inputInfo.split("-`-");
         for(int i = 0; i < parts.length; i++) {
             boolean exist = false;
             //find corresponding element

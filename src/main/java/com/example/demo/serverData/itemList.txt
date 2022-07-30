@@ -451,7 +451,7 @@ end of description
 false
 GM
 head
-http://26.3.41.21:8080/images/items/helmet.png
+images/items/helmet.png
 
 35
 boots of speed
@@ -464,7 +464,7 @@ end of description
 false
 GM
 boots
-http://26.3.41.21:8080/images/items/boots.png
+images/items/boots.png
 
 36
 hp potion
@@ -477,7 +477,7 @@ end of description
 true
 Chudelkin
 quickBar
-http://26.3.41.21:8080/images/items/potionLife.png
+images/items/potionLife.png
 
 37
 hp potion
@@ -490,7 +490,7 @@ end of description
 false
 GM
 quickBar
-http://26.3.41.21:8080/images/items/potionLife.png
+images/items/potionLife.png
 
 38
 mana potion
@@ -500,10 +500,10 @@ end of description
 10.0
 10.0
 2
-true
-TempChar
+false
+GM
 quickBar
-http://26.3.41.21:8080/images/items/potion.png
+images/items/potion.png
 
 39
 mana potion
@@ -516,20 +516,7 @@ end of description
 true
 Chudelkin
 quickBar
-http://26.3.41.21:8080/images/items/potion.png
-
-40
-new item
-spendable
-no description yet
-end of description
-10.0
-10.0
-1
-false
-TempChar
-random Stuff
-http://26.3.41.21:8080/images/items/glasses.png
+images/items/potion.png
 
 41
 new item
@@ -542,5 +529,18 @@ end of description
 false
 Hyakkimaru
 random Stuff
-http://26.3.41.21:8080/images/items/crystal.jpg
+images/items/crystal.jpg
+
+40
+new item
+equipment
+shoulder pads
+end of description
+10.0
+10.0
+1
+false
+Velarion
+random Stuff
+images/items/shoulder pads.png
 

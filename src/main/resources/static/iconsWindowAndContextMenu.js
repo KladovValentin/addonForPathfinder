@@ -329,8 +329,8 @@ function createItemIcons(){
         let changeItemIconWindowt = document.getElementById("changeItemIconWindow");
         let contextMenu = document.getElementById("itemPrimaryContext-menu");
         let locItem = items[findIndexInItems(contextMenu.enactingItemId)];
-        locItem.src = icont.src;
-        locItem.itemIconSrc = icont.src;
+        locItem.src = "images/items/" + itemIconsFileList[i];
+        locItem.itemIconSrc = "images/items/" + itemIconsFileList[i];
         updateItemInfo(findIndexInItems(locItem.itemId));
         for(let j = 0; j < itemIconsFileList.length; j++){
           document.getElementById("changeItemIconItem"+String(j)).style.display = "none";

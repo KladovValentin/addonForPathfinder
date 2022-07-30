@@ -47,6 +47,7 @@ function createDroppingList(charName, listId, listName){
 
             droppingListTemp.style.backgroundColor = "rgb(20, 20, 20)";
             droppingListTemp.style.color = "rgb(248, 248, 248)";
+            //console.log(droppingListTemp.elementsIds.length);
             for (let i = 0; i < droppingListTemp.elementsIds.length; i++){
                 document.getElementById(charName + "DropList" + listId + "Elem" + droppingListTemp.elementsIds[i]).style.display = "block";
                 document.getElementById(charName + "DropList" + listId + "Elem" + droppingListTemp.elementsIds[i]).style.zIndex = "10";
@@ -62,10 +63,12 @@ function createDroppingList(charName, listId, listName){
             droppingListTemp.style.color = "rgb(20, 20, 20)";
             document.getElementById(charName + "DropList" + listId + "Plus").style.zIndex = "0";
             document.getElementById(charName + "DropList" + listId + "Plus").style.display = "none";
+            //console.log(droppingListTemp.elementsIds.length);
             for (let i = 0; i < droppingListTemp.elementsIds.length; i++){
                 document.getElementById(charName + "DropList" + listId + "Elem" + droppingListTemp.elementsIds[i]).style.zIndex = "0";
                 document.getElementById(charName + "DropList" + listId + "Elem" + droppingListTemp.elementsIds[i]).style.display = "none";
             }
+            console.log(charName + "DropList" + listId + "Elem" + droppingListTemp.elementsIds[droppingListTemp.elementsIds.length-1]);
             droppingListTemp.state = "hidden";
         }
     });
@@ -86,15 +89,19 @@ function createDropListPlusElementButton(charName,listId){
     dropListPlusElemButt.style.display = "none";
 
     dropListPlusElemButt.addEventListener("click", function(){
-        let freeId = 0;
-        while(1){
+        let freeId = parseInt(0);
+        let whilecondloc = true;
+        while(whilecondloc){
             for (let i = 0; i < droppingList.elementsIds.length; i++){
-                if (droppingList.elementsIds == freeId){
-                    freeId+=1;
+                if (droppingList.elementsIds[i] == String(freeId)){
+                    freeId = freeId+1;
+                    //console.log(freeId);
                     break;
                 }
+                if(i == droppingList.elementsIds.length - 1){
+                    whilecondloc = false;
+                }
             }
-            break;
         }
         addAnotherDropListElement(charName,listId,String(freeId));
         droppingList.elementsIds.push(String(freeId));
@@ -108,6 +115,7 @@ function addAnotherDropListElement(charName,listId, elementId){
     let droppingListContainer = document.getElementById(charName + "DropListContainer" + listId);
     let droppingList = document.getElementById(charName + "DropList" + listId);
     dropListElem.id = charName + "DropList" + listId + "Elem" + elementId;
+    //console.log(dropListElem.id);
     dropListElem.classList.add("droppingListElementDesign");
 
     dropListElem.contentEditable = true;
