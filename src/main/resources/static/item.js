@@ -316,14 +316,24 @@ function constructNewItem(image,cellNumber){
         let equipmentSocket = document.getElementById(newItem.whoseItemIs + "CharPage" + charpage.socketsIds[i]);
         if(equipmentSocket.hoverYN == true){
           newItem.itemSecondaryType = charpage.socketsTypes[i];
+          if (!newItem.equipped){
+            equipUnequipItem(findIndexInItems(newItem.itemId));
+            break;
+          }
           updateItemInfo(findIndexInItems(newItem.itemId));
+          break;
         }
       }
       for (let i = 0; i < 9; i++){
         let quickBarSocket = document.getElementById("quickBarCell" + i.toString());
         if(quickBarSocket.hoverYN == true){
           newItem.itemSecondaryType = "quickBar";
+          if (!newItem.equipped){
+            equipUnequipItem(findIndexInItems(newItem.itemId));
+            break;
+          }
           updateItemInfo(findIndexInItems(newItem.itemId));
+          break;
         }
       }
 
@@ -384,6 +394,9 @@ function placeItemInCell(newItem){
       if (boxOfEquipmentExtra.occupationItemId == newItem.itemId){
         newItem.style.top = boxOfEquipmentExtra.getBoundingClientRect().top + 'px';
         newItem.style.left = boxOfEquipmentExtra.getBoundingClientRect().left +'px';
+        boxOfEquipmentExtra.style.zIndex = "0";
+        //console.log("I AM HERERERERERERER ");
+        //newItem.style.transitionDuration = "0.2s";
         return;
       }
     }
@@ -392,11 +405,12 @@ function placeItemInCell(newItem){
     if (newItem.itemSecondaryType == "quickBar"){
       for (let i = 0; i < 9; i++){
         if (charpage.quickBarItemIds[i] == newItem.itemId){
-          boxid = "quickBarCell" + i.toString();;
+          boxid = "quickBarCell" + i.toString();
         }
       }
     }
     let boxOfEquipment = document.getElementById(boxid);
+    //console.log(newItem.style.transitionDuration);
     newItem.style.width = boxOfEquipment.getBoundingClientRect().width + 'px';
     newItem.style.top = boxOfEquipment.getBoundingClientRect().top + 'px';
     newItem.style.left = boxOfEquipment.getBoundingClientRect().left +'px';
@@ -590,7 +604,7 @@ function updateItemsInfo(newParString){
               boxid = "none";
             }
           }
-          if (boxid!="none"){
+          else if (boxid!="none"){
             if (document.getElementById(boxid).occupied == false){
               items[items.length - 1].equipped=false;
               equipUnequipItemBase(items.length - 1);

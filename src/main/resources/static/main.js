@@ -82,6 +82,8 @@ document.addEventListener('keydown', event => {
   }
 })
 
+document.onload = function(){updateInfo();};
+
 /*function mousemove(event){
   console.log("pageX: ",event.pageX, 
   "pageY: ", event.pageY, 

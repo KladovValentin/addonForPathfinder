@@ -5,6 +5,7 @@ Attack;1;bcb
 Damage;0;asdasd
 Damage;1;ggggas
 Damage;2;abc
+Damage;3;/roll d20+9 (///)
 Ac;0;25 - touch
 Ac;1;30 - normal
 Ac;2;31 - with cats grace

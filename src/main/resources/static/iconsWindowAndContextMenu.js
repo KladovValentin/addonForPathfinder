@@ -79,8 +79,8 @@ function transformItemSecTypeToBoxId(charPageName, newItem){
     return "none";
 }
   
-function equipUnequipItemBase(newItemId){
-  let newItem = items[newItemId];
+function equipUnequipItemBase(newItemIndex){
+  let newItem = items[newItemIndex];
   if (newItem.itemSecondaryType == "quickBar"){
     
     // just unequip
@@ -180,10 +180,11 @@ function equipUnequipItemBase(newItemId){
     placeItemsInCells();
     displayOnlyThisType(currentPage);
 }
-function equipUnequipItem(newItemId){
-  let newItem = items[newItemId];
-  equipUnequipItemBase(newItemId);
-  updateItemInfo(findIndexInItems(newItem.itemId));
+
+function equipUnequipItem(newItemIndex){
+  let newItem = items[newItemIndex];
+  equipUnequipItemBase(newItemIndex);
+  updateItemInfo(newItemIndex);
 }
 
 function splitItemAmount(newItemId){

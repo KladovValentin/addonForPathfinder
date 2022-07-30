@@ -8,7 +8,7 @@ end of description
 1
 false
 GM
-random Stuff
+back
 images/items/cloak.png
 
 2
@@ -47,7 +47,7 @@ end of description
 1
 false
 GM
-random Stuff
+extra armor
 images/items/belt.png
 
 5
@@ -62,19 +62,6 @@ true
 Velarion
 belt
 images/items/belt.png
-
-6
-eagle glasses
-equipment
-+5 perception
-end of description
-10.0
-10.0
-1
-true
-Velarion
-head
-images/items/glasses.png
 
 7
 cat paw boots
@@ -216,7 +203,7 @@ end of description
 3
 false
 GM
-random Stuff
+quickBar
 images/items/potionLife.png
 
 18
@@ -255,7 +242,7 @@ end of description
 1
 false
 Velarion
-random Stuff
+accessory 2
 images/items/amulet2.png
 
 0
@@ -448,7 +435,7 @@ end of description
 10.0
 10.0
 1
-false
+true
 GM
 head
 images/items/helmet.png
@@ -461,7 +448,7 @@ end of description
 10.0
 10.0
 1
-false
+true
 GM
 boots
 images/items/boots.png
@@ -487,7 +474,7 @@ end of description
 10.0
 10.0
 3
-false
+true
 GM
 quickBar
 images/items/potionLife.png
@@ -541,6 +528,6 @@ end of description
 1
 false
 Velarion
-random Stuff
+back
 images/items/shoulder pads.png
 
