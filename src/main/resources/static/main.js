@@ -18,6 +18,7 @@ function defineInventoryButtons(){
     // dragging
     typeButton.addEventListener("dragover", (event) => {
       event.preventDefault();
+      typeButton.style.backgroundColor = "rgb(173, 216, 230)";
     });
     typeButton.addEventListener("drop", (event) => {
       event.preventDefault();
@@ -25,6 +26,7 @@ function defineInventoryButtons(){
     });
     typeButton.addEventListener("mouseleave",function(){
       typeButton.hoverYN = false;
+      //typeButton.style.backgroundColor = "gray";
     });
   }
 
@@ -37,7 +39,7 @@ function defineInventoryButtons(){
     speakText('items were sorted')
   });
   document.getElementById("newItemButton").addEventListener("click",function(){
-    constructNewItem('images/items/box.png', findFreeCell());
+    constructNewItem('images/items/rand-box.png', findFreeCell());
     constructNewItemOnServer(items.length - 1);
   });
 }

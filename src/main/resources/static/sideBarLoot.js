@@ -54,6 +54,29 @@ function createLootBox(){
     });
 }
 
+function createTextBox(){
+    //define box itself parameters - coordinates, position, image, width
+    let box1 = document.createElement("div");
+    box1.classList.add("sideBartextBox");
+    box1.id = "sbTextBox"+"1";
+    
+    let infoToSend =     "To fix description of the item - press MMB or hold 3s";
+    infoToSend +="<br><br>"+ "To equip - drag an item to the quipment/quickbar socket";
+    infoToSend +="<br><br>"+ "After that you can equip/unequip via context menu";
+    infoToSend +="<br><br>"+ "You can transfer an item to another char/type";
+    infoToSend +="<br><br>"+ "by dragging it to char icon / type button";
+    infoToSend +="<br><br>"+ "But try to drag it only from inventory section";
+    infoToSend +="<br><br>"+ "To delete roll note - press MMB";
+    infoToSend +="<br><br>"+ "There are some other minor features";
+    infoToSend +="<br><br>"+ "If you face any problem - try refreshing a page";
+
+    box1.innerHTML = infoToSend;
+
+    let sideBarLoott = document.getElementById("sideBarLoot");
+    sideBarLoott.appendChild(box1);
+}
+
+
 createOpenCloseSideBarSwitch();
 createLootBox();
-//<img class = "lootChest" src = "images/box.png" id = "lootChest1">
+createTextBox();

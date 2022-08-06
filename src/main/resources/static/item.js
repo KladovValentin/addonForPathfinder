@@ -11,7 +11,7 @@ class item {
       this.equipped = false;
       this.whoseItemIs = "";
       this.itemSecondaryType = "randomStuff";
-      this.itemIconSrc = "images/box.png";
+      this.itemIconSrc = "images/items/rand-box.png";
       /*this.itemDelete = itemDelete;*/
     }
 }
@@ -253,7 +253,7 @@ function constructNewItem(image,cellNumber){
     newItem.itemSecondaryType = "random Stuff";
     newItem.whoseItemIs = currentCharacter;
     newItem.equipped = false;
-    newItem.itemIconSrc = "images/items/box.png";
+    newItem.itemIconSrc = "images/items/rand-box.png";
     newItem.id = "item" + (items.length - 1).toString();
   
     //add event Listeners 
@@ -343,7 +343,7 @@ function constructNewItem(image,cellNumber){
         if(charbutton.hoverYN == true){
           let sameName = false;
           for (let j = 0; j < items.length; j++){
-            if (items[j].itemType == currentPage && items[j].whoseItemIs == users[i] && items[j].itemName == newItem.itemName){
+            if (items[j].itemType == currentPage && items[j].whoseItemIs == users[i] && items[j].itemName == newItem.itemName && !items[j].equipped){
               items[j].itemAmount += newItem.itemAmount;
               sameName = true;
               removeItem(newItem);
@@ -351,6 +351,11 @@ function constructNewItem(image,cellNumber){
             }
           }
           if (!sameName){
+            currentCharacter = users[i];
+            if (!newItem.equipped){  
+              newItem.itemCell = findFreeCell();
+            }
+            currentCharacter = newItem.whoseItemIs;
             newItem.whoseItemIs = users[i];
             updateItemInfo(findIndexInItems(newItem.itemId));
             displayOnlyThisType(currentPage);
@@ -580,7 +585,7 @@ function updateItemsInfo(newParString){
         currentPage = infoArrayParameters[2];
         let currentChart = currentCharacter;
         currentCharacter = infoArrayParameters[8];
-        constructNewItem('images/items/box.png', findFreeCell());
+        constructNewItem('images/items/rand-box.png', findFreeCell());
         currentCharacter = currentChart;
         currentPage = currentPaget;
         setItemParameters(items.length - 1,infoArrayParameters);

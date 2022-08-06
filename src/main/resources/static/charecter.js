@@ -10,7 +10,7 @@ class equipmentBoxClass {
 class characterPageInfo{
     constructor() {
         this.charName = "Name";
-        this.charImage = "images/character.jpg";
+        this.charImage = "images/chars/character.jpg";
         this.socketsNames = ["right hand", "left hand" , "armor" , "back" , "left bracer" ,  "right bracer" , "ring 1" , "ring 2" , "ring 3" , "ring 4"];
         this.socketsIds = ["righthand", "lefthand" , "armor" , "back" , "leftbracer" ,  "rightbracer" , "ring1" , "ring2" , "ring3" , "ring4"];
         this.socketsTypes = ["right hand", "left hand" , "armor" , "back" , "left bracer" ,  "right bracer" , "ring" , "ring" , "ring" , "ring"];
@@ -167,9 +167,9 @@ function constructCharacterPage(charName, image){
     charPage.classList.add("characterPageInfo");
     charPage.charName = charName;
     charPage.charImage = image;
-    charPage.socketsNames = ["primary", "secondary" , "head" , "armor" , "extra armor" , "back" , "boots" , "bracers" , "amulet" , "belt" , "accessory 1" , "accessory 2"];
-    charPage.socketsIds = ["primary", "secondary" , "head" , "armor" , "extraAarmor" , "back" , "boots", "bracers" , "amulet" , "belt" , "accessory1" , "accessory2"];
-    charPage.socketsTypes = ["primary", "secondary" , "head" , "armor" , "extra armor" , "back" , "boots" , "bracers" , "amulet" , "belt" , "accessory 1" , "accessory 2"];
+    charPage.socketsNames = ["primary", "secondary" , "head" , "armor" , "extra armor" , "back" , "boots" , "hands" , "amulet" , "belt" , "accessory 1" , "accessory 2"];
+    charPage.socketsIds = ["primary", "secondary" , "head" , "armor" , "extraAarmor" , "back" , "boots", "hands" , "amulet" , "belt" , "accessory1" , "accessory2"];
+    charPage.socketsTypes = ["primary", "secondary" , "head" , "armor" , "extra armor" , "back" , "boots" , "hands" , "amulet" , "belt" , "accessory 1" , "accessory 2"];
     charPage.quickBarFill = [false,false,false,false,false,false,false,false,false];
     charPage.quickBarItemIds = [-1,-1,-1,-1,-1,-1,-1,-1,-1];
     charPage.droppingDownLists = [];

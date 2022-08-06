@@ -320,8 +320,8 @@ function createItemIcons(){
       icont.src = "images/items/" + itemIconsFileList[i];
       icont.style.display = "none";
 
-      icont.style.top = String(5.5+(i-i%9)/9*20) + '%';
-      icont.style.left = String(1.5+(i%9)*11) + '%';
+      icont.style.top = String(5.5+(i-i%18)/9*5.5) + '%';
+      icont.style.left = String(0.5+(i%18)*5.5) + '%';
 
       changeItemIconWindow.appendChild(icont);
 

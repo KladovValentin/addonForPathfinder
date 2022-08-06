@@ -92,15 +92,22 @@ function createDropListPlusElementButton(charName,listId){
         let freeId = parseInt(0);
         let whilecondloc = true;
         while(whilecondloc){
+            console.log(freeId);
+            let counterEl = 0;
             for (let i = 0; i < droppingList.elementsIds.length; i++){
+                counterEl+=1;
                 if (droppingList.elementsIds[i] == String(freeId)){
                     freeId = freeId+1;
                     //console.log(freeId);
                     break;
                 }
-                if(i == droppingList.elementsIds.length - 1){
+                /*if(i == droppingList.elementsIds.length - 1){
                     whilecondloc = false;
-                }
+                    break;
+                }*/
+            }
+            if(counterEl == droppingList.elementsIds.length){
+                whilecondloc = false;
             }
         }
         addAnotherDropListElement(charName,listId,String(freeId));

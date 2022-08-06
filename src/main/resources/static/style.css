@@ -34,10 +34,11 @@ body > .semilayer {
 }
 .header {
 	padding: 5px 5px; 
-	background-color: gray;
+	background-color: rgba(0, 3, 7, 0.589);
 	text-align: center;
 	margin: 0 auto; 
-	border: 1px solid black;
+	color: white;
+	/*border: 1px solid black;*/
 	width: 100%; /* Ширина слоя */
 	height: 50px;
 	font-size: 30px;
@@ -47,28 +48,31 @@ body > .semilayer {
 .buttons{
 	height: 10%;
 	justify-content: space-between;
-	background-color: rgba(70, 45, 0, 0.733);
-	border: 1px solid black;
+	background-color: rgba(79, 161, 172, 0.089);
+	border: 1px dashed rgb(0, 0, 0);
 	display: flex;
 	flex-direction: row;
 }
 .button{
 	width:18%;
+	line-height: 16px;
 	height:35px;
 	margin: 5px 5px 5px 5px;
-	padding: 8px 0px;
-	border: 1px solid black;
+	padding: 0px 0px;
+	border: 1px dashed black;
 	box-sizing: border-box;
-	background-color: gray;
+	background-color: rgb(121, 121, 121);
+	color: black;
 	text-align: center;
-  	text-decoration: none;
+	display: inline-block;
+  	vertical-align: middle;
 	transition-duration: 0.3s;
 	font-size: 14px;
 	cursor: pointer;
 }
 .button:hover {
 	background-color: rgb(173, 216, 230); /* Green */
-	color: black;
+	color: white;
 }
 
 .img[target="net"] {
@@ -146,10 +150,10 @@ body > .semilayer {
 	box-sizing: border-box;
 }
 .itemDescription-itemAmount {
-	padding: 15px 20px 15px 20px;
+	padding: 15px 1px 15px 1px;
 	position: relative;
 	z-index: 1000;
-	width: 10%; /* Ширина слоя */
+	width: 15%; /* Ширина слоя */
 	font-size: 24px;
 	text-align: center;
 	box-sizing: border-box;
@@ -159,7 +163,7 @@ body > .semilayer {
 	padding: 15px 20px 15px 20px;
 	position: relative;
 	z-index: 1000;
-	width: 10%; /* Ширина слоя */
+	width: 15%; /* Ширина слоя */
 	font-size: 24px;
 	text-align: center;
 	box-sizing: border-box;
@@ -198,7 +202,7 @@ body > .semilayer {
 	height:auto;
 	position: absolute;
 	top: 1%;
-	left: 30%;
+	left: 32%;
 	padding:0px;
 	margin:0px;
 	/*background-size: cover;*/
@@ -310,7 +314,7 @@ body > .semilayer {
 	height: 9%;
     /*transform: translateX(-50%);*/
 	bottom: 0%;
-	background-color: rgba(100, 72, 20, 0.733);
+	background-color: rgba(165, 165, 165, 0.781);
 	border: 1px solid black;
 	display: block;
 }
@@ -360,6 +364,16 @@ body > .semilayer {
 	/*padding: 50px 0px;*/
 	margin-top:10%;
 }
+.sideBartextBox {
+	top: 40%;
+	left: 5%;
+	width: 90%;
+	position: absolute;
+	height: 40%;
+	border: 1px dashed black;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 14px;
+}
 
 
 /*___________________________________change item icon section______________________________________*/
@@ -391,13 +405,13 @@ body > .semilayer {
 	background: #343434;
 }
 #changeItemIconWindow .itemIcon{
-	width: 10%;
+	width: 5%;
 	position: absolute;
 	cursor: pointer;
 }
 #changeItemIconWindow .itemIcon:hover{
 	border: 2px solid black;
-	width: 10.5%;
+	width: 5.2%;
 }
 
 /*_______split item fields_________*/
