@@ -1,20 +1,30 @@
 GM
 images/chars/gm.jpg
+11000
 Attack;0;Bogdan loh
 Attack;1;/roll d20+20 (without the buff)
 next Character
 Velarion
 images/chars/velarion.jpg
+0
 next Character
 BlackJack
 images/chars/blackjack.jpg
+0
 next Character
 Chudelkin
 images/chars/chudelkin.png
+0
 next Character
 Nyolan
 images/chars/barbarian.jpg
+0
 next Character
 Hyakkimaru
 images/chars/Akihiko.jpg
+0
+next Character
+Azator
+images/chars/cleric.png
+0
 next Character

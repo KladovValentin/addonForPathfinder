@@ -19,6 +19,7 @@ class characterPageInfo{
         this.quickBarItemIds = [-1,-1,-1,-1,-1,-1,-1,-1,-1];
 
         this.droppingDownLists = [];
+        this.money = 0;
     }
 }
 
@@ -161,12 +162,13 @@ function constructCharacterBoxes(charName){
 }
 
 
-function constructCharacterPage(charName, image){
+function constructCharacterPage(charName, image, money){
     let charPage = document.createElement("div");
     charPage.classList.add("characterPage");
     charPage.classList.add("characterPageInfo");
     charPage.charName = charName;
     charPage.charImage = image;
+    charPage.money = money;
     charPage.socketsNames = ["primary", "secondary" , "head" , "armor" , "extra armor" , "back" , "boots" , "hands" , "amulet" , "belt" , "accessory 1" , "accessory 2"];
     charPage.socketsIds = ["primary", "secondary" , "head" , "armor" , "extraAarmor" , "back" , "boots", "hands" , "amulet" , "belt" , "accessory1" , "accessory2"];
     charPage.socketsTypes = ["primary", "secondary" , "head" , "armor" , "extra armor" , "back" , "boots" , "hands" , "amulet" , "belt" , "accessory 1" , "accessory 2"];
@@ -182,6 +184,7 @@ function constructCharacterPage(charName, image){
     createDroppingList(charName, "Attack", "attack rolls");
     createDroppingList(charName, "Damage", "damage rolls");
     createDroppingList(charName, "Ac", "AC values");
+    constructCurrencyField(charName);
 }
 
 function constructCharacterPages(){
@@ -195,7 +198,7 @@ function constructCharacterPages(){
         let infoArrayParameters = paramArray[i].split("-`-");
         users.push(infoArrayParameters[0]);
         currentCharacter = infoArrayParameters[0];
-        constructCharacterPage(infoArrayParameters[0], infoArrayParameters[1]);
+        constructCharacterPage(infoArrayParameters[0], infoArrayParameters[1], infoArrayParameters[2]);
     }
     currentCharacter = users[0];
     createManageCharacterButtons();
@@ -231,8 +234,8 @@ function updateCharacterParameters(charName){
     let infoToSend = String(locCharPage.charName);
     infoToSend +="_"+String(locCharPage.charName);
     infoToSend +="-`-"+String(locCharPage.charImage);
+    infoToSend +="-`-"+String(locCharPage.money);
     var xmlHttp = new XMLHttpRequest();
-    console.log(locCharPage.charImage);
     xmlHttp.open( "GET", serverAddress+"updateCharacterParameters?info="+encodeURIComponent(infoToSend), false);
     xmlHttp.send( null );
 }
@@ -274,7 +277,7 @@ function constructCharIconButton(charName){
     icon.classList.add("charIconButtonStyle");
     icon.classList.add("charIconButtonProperties");
     icon.hoverYN = false; //for dragging items to this button and change their "owner"
-    console.log("url('"+document.getElementById(charName+"CharPage").charImage + "')");
+    //console.log("url('"+document.getElementById(charName+"CharPage").charImage + "')");
     icon.style.backgroundImage = "url('"+ document.getElementById(charName+"CharPage").charImage + "')";
     //icon.src = document.getElementById(charName+"CharPage").charImage;
     icon.id = charName + "CharPage" + "IconButton";
@@ -349,12 +352,13 @@ function placeAllManageCharButtons(){
 function createNewCharacter(charName){
     users.push(charName);
     placeAllManageCharButtons();
-    constructCharacterPage(charName, "images/chars/character.jpg");
+    constructCharacterPage(charName, "images/chars/character.jpg",0);
     currentCharacter = charName;
     showOnlyThisCharPage(currentCharacter);
 
     let infoToSend = String(charName);
     infoToSend +="-`-"+String("images/chars/character.jpg");
+    infoToSend +="-`-"+String("0");
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", serverAddress+"genNewCharacter?info="+encodeURIComponent(infoToSend), false);
     xmlHttp.send( null );

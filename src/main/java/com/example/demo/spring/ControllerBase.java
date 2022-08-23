@@ -160,7 +160,8 @@ public class ControllerBase {
         String[] parts = info.split("-`-");
         String name = parts[0];
         String imageSrc = parts[1];
-        ServerData.characters.add(new Character(name,imageSrc));
+        int money = Integer.parseInt(parts[2]);
+        ServerData.characters.add(new Character(name,imageSrc,money));
         return "ok";
     }
 
@@ -205,7 +206,8 @@ public class ControllerBase {
         String answer = "";
         for(int x = 0; x < ServerData.characters.size(); x++){
             answer = answer + String.valueOf(ServerData.characters.get(x).getName()) + "-`-";
-            answer = answer + String.valueOf(ServerData.characters.get(x).getImageSrc());
+            answer = answer + String.valueOf(ServerData.characters.get(x).getImageSrc())+"-`-";
+            answer = answer + String.valueOf(ServerData.characters.get(x).getMoney());
             if(x < ServerData.characters.size() - 1){
                 answer = answer + "_";
             }

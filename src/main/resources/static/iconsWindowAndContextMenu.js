@@ -135,7 +135,7 @@ function equipUnequipItemBase(newItemIndex){
     let charPageName = newItem.whoseItemIs + "CharPage";
     let boxid = transformItemSecTypeToBoxId(charPageName, newItem);
     //check if id or type is correct
-    console.log(boxid);
+    //console.log(boxid);
     if (boxid == "none"){
       alert("equipment subtype is not valid!"); 
       return;
@@ -172,7 +172,7 @@ function equipUnequipItemBase(newItemIndex){
     //change cell on first free without equipped on the appropriate page
     currentPage = newItem.itemType;
     newItem.itemCell = findFreeCell();
-    console.log(newItem.itemCell);
+    //console.log(newItem.itemCell);
     currentPage = newItem.itemType;
 
     newItem.equipped = newItem.equipped ? false : true;
@@ -227,6 +227,42 @@ function splitItemAmount(newItemId){
   document.querySelector("body").appendChild(cancelField);
 }
 
+function sellItem(newItemId){
+  let newItem = items[findIndexInItems(newItemId)];
+  let inputField = document.createElement("div");
+  inputField.contentEditable = true;
+  inputField.classList.add("inputField");
+  inputField.innerText = String(Math.floor(newItem.itemVolume/2));
+  document.querySelector("body").appendChild(inputField);
+
+  let confirmField = document.createElement("div");
+  confirmField.classList.add("confirmField");
+  confirmField.innerText = "confirm";
+  confirmField.addEventListener('click',function(){
+    let locCharPage = document.getElementById(newItem.whoseItemIs + "CharPage");
+    locCharPage.money = parseInt(locCharPage.money) + parseInt(inputField.innerText);
+    let locCurrencyField = document.getElementById(newItem.whoseItemIs + "currencyField");
+    locCurrencyField.innerText = locCharPage.money;
+    updateCharacterParameters(newItem.whoseItemIs);
+    removeItem(newItem);
+
+    inputField.remove();
+    confirmField.remove();
+    cancelField.remove();
+  });
+  document.querySelector("body").appendChild(confirmField);
+
+  let cancelField = document.createElement("div");
+  cancelField.classList.add("cancelField");
+  cancelField.innerText = "cancel";
+  cancelField.addEventListener('click',function(){
+    inputField.remove();
+    confirmField.remove();
+    cancelField.remove();
+  });
+  document.querySelector("body").appendChild(cancelField);
+}
+
 function preCreateItemContextMenu(){
   let contextMenut = document.getElementById("itemPrimaryContext-menu");
   contextMenut.classList.add("customItemContextMenu");
@@ -235,6 +271,7 @@ function preCreateItemContextMenu(){
   const equipItemButton = document.getElementById("equipItemButton");
   const changeIconItemButton = document.getElementById("changeIconItemButton");
   const SplitItemButton = document.getElementById("SplitItemButton");
+  const SellItemButton = document.getElementById("SellItemButton");
 
   //_________________deleting listener
   deleteItemButton.addEventListener("click", function(){
@@ -247,7 +284,6 @@ function preCreateItemContextMenu(){
   //_________________equipping listener
   equipItemButton.addEventListener("click", function(){
     let contextMenu = document.getElementById("itemPrimaryContext-menu");
-    let newItem = items[findIndexInItems(contextMenu.enactingItemId)];
     let newItemId = findIndexInItems(contextMenu.enactingItemId);
     //delete context menu
     contextMenu.classList.remove("visible");
@@ -272,6 +308,18 @@ function preCreateItemContextMenu(){
     let newItemId = findIndexInItems(contextMenu.enactingItemId);
     splitItemAmount(newItemId);
   });
+
+  //_________________sell listener
+  preCreateCellFields();
+  SellItemButton.addEventListener("click", function(){
+    let contextMenu = document.getElementById("itemPrimaryContext-menu");
+    contextMenu.classList.remove("visible");
+    let newItemId = findIndexInItems(contextMenu.enactingItemId);
+    sellItem(newItemId);
+  });
+}
+function preCreateCellFields(){
+
 }
 
 function preCreateCharImageContextMenu(){

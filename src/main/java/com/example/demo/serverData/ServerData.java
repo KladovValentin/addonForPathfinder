@@ -70,10 +70,12 @@ public class ServerData {
             Scanner myReader = new Scanner(infile);
             String name = "";
             String imageSrc = "";
+            int money = 0;
             while (myReader.hasNextLine()) {
                 name = myReader.nextLine();
                 imageSrc = myReader.nextLine();
-                characters.add(new Character(name,imageSrc));
+                money = Integer.parseInt(myReader.nextLine());
+                characters.add(new Character(name,imageSrc,money));
                 String newLine = myReader.nextLine();
                 while(!newLine.equals("next Character")){
                     String[] parts = newLine.split(";");
@@ -97,6 +99,7 @@ public class ServerData {
             for(int x = 0; x < ServerData.characters.size(); x++){
                 outfile.write(String.valueOf(ServerData.characters.get(x).getName()) + "\r\n");
                 outfile.write(String.valueOf(ServerData.characters.get(x).getImageSrc()) + "\r\n");
+                outfile.write(String.valueOf(ServerData.characters.get(x).getMoney()) + "\r\n");
                 for(int i = 0; i < characters.get(x).getDropList("Attack").elements.size(); i++){
                     outfile.write("Attack;" + String.valueOf(ServerData.characters.get(x).getDropList("Attack").getId(i)) + ";" + String.valueOf(ServerData.characters.get(x).getDropList("Attack").getText(i)) + "\r\n");
                 }

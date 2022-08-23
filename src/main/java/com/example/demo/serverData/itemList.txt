@@ -155,12 +155,12 @@ head
 images/items/eq-head-helmet.png
 
 13
-Glove left blackmetal
+Gloves blackmetal
 equipment
-This left-handed black iron gauntlet appears little more than a dull soot-stained plated glove at first glance, but in truth it is a powerful boon granted by Droskar to his most faithful subjects. Placing the glove on your left hand causes excruciating pain as your appendage curls into a tight fist and then slowly transforms to supernaturally hard black stone. You cannot use your left hand for anything beyond smashing it into objects or creatures (you cannot carry a shield or secondary weapon and you take a â€“4 on skill checks that usually require two hands). +2 enhancement bonus to&nbsp; Constituent.
+Left-handed black iron gauntlet appears little more than a dull soot-stained plated glove at first glance, but in truth it is a powerful boon granted by Droskar to his most faithful subjects. Placing the glove on your left hand causes excruciating pain as your appendage curls into a tight fist and then slowly transforms to supernaturally hard black stone. You cannot use your left hand for anything beyond smashing it into objects or creatures (you cannot carry a shield or secondary weapon and you take a -4 on skill checks that usually require two hands). +2 enhancement bonus to Constitution.<br><br>Right-handed black iron gauntlet allows its wearer to use stone shape once per day. +2 enchantment bonus to Strenght<br>
 end of description
 10.0
-10.0
+8000.0
 1
 true
 Nyolan
@@ -381,7 +381,7 @@ equipment
 +4 to attack rolls, damage 1d8+3<br>crit range 18-20<br>price ~20k
 end of description
 10.0
-10.0
+20000.0
 1
 true
 Hyakkimaru
@@ -391,10 +391,10 @@ images/items/eq-pri-dagger.png
 30
 Cold iron +1 keen dual-balanced Wakizashi
 equipment
-+2 to atack rolls, dmg 1d6+1<br>crit range 15-20<br>price ~10k
++2 to atack rolls, dmg 1d6+1<br>crit range 15-20
 end of description
 10.0
-10.0
+10000.0
 1
 true
 Hyakkimaru
@@ -404,10 +404,10 @@ images/items/eq-pri-dagger.png
 31
 Cloak of resistance +2
 equipment
-+2 to all save throws<br>price 4k
++2 to all save throws
 end of description
 10.0
-10.0
+4000.0
 1
 true
 Hyakkimaru
@@ -417,10 +417,10 @@ images/items/eq-back-cloak.png
 32
 Ring of dexterity
 equipment
-grants 1 ench dexterity<br>price ~1k
+grants 1 ench dexterity
 end of description
 10.0
-10.0
+1000.0
 1
 true
 Hyakkimaru
@@ -430,10 +430,10 @@ images/items/eq-acc-ring.png
 33
 +3 Lucky mithral shirt 
 equipment
-6 max dex, 8 ac (4+3(e)+1(l)), 0 penalty&nbsp;<br>price ~12k
+6 max dex, 8 ac (4+3(e)+1(l)), 0 penalty
 end of description
 10.0
-10.0
+12000.0
 1
 true
 Hyakkimaru
@@ -441,12 +441,12 @@ armor
 images/items/eq-ar-chainmail.png
 
 34
-Ring of protection +1
+Ring of protection +2
 equipment
-+1 defl ac<br>price ~2k
++2 defl ac
 end of description
 10.0
-10.0
+8000.0
 1
 true
 Hyakkimaru
@@ -454,12 +454,12 @@ accessory 2
 images/items/eq-acc-ring.png
 
 35
-Amulet of natural armor +1
+Amulet of natural armor +2
 equipment
-+1 natural AC<br>price ~2k
++2 natural AC
 end of description
 10.0
-10.0
+8000.0
 1
 true
 Hyakkimaru
@@ -469,10 +469,10 @@ images/items/eq-acc-amulet.png
 36
 Belt of giant strength +2
 equipment
-+2 ench bonus to str<br>price 4k
++2 ench bonus to str
 end of description
 10.0
-10.0
+4000.0
 1
 true
 Hyakkimaru
@@ -506,12 +506,12 @@ random Stuff
 images/items/rand-box.png
 
 39
-Cloak  of resistance+1
+Cloak of Free Will +2/+3
 equipment
 Previously, there was a Ring of Saving Throws +1, for the convenience of accounting, it was converted into a cloak.
 end of description
 10.0
-10.0
+6000.0
 1
 true
 Velarion
@@ -681,7 +681,7 @@ no description yet
 end of description
 10.0
 10.0
-2
+3
 true
 Velarion
 quickBar
@@ -1071,7 +1071,7 @@ no description yet
 end of description
 10.0
 10.0
-2
+4
 true
 Hyakkimaru
 quickBar
@@ -1080,11 +1080,11 @@ images/items/spend-potionLife.png
 83
 Potion of barkskin
 spendable
-no description yet
++2 (0) natural AC
 end of description
 10.0
 10.0
-1
+0
 true
 Hyakkimaru
 quickBar
@@ -1093,7 +1093,7 @@ images/items/spend-potion.png
 84
 Potion of bull's strength
 spendable
-no description yet
++4 str (+2 because of the belt) (+1 mod)
 end of description
 10.0
 10.0
@@ -1106,11 +1106,11 @@ images/items/spend-potion.png
 85
 Potion of cat's grace
 spendable
-no description yet
++4 dex (+3) - +1 mod (+1 ac)
 end of description
 10.0
 10.0
-1
+0
 true
 Hyakkimaru
 quickBar
@@ -1267,9 +1267,9 @@ end of description
 10.0
 10.0
 1
-false
+true
 BlackJack
-random Stuff
+quickBar
 images/items/eq-sec-wand1.jpg
 
 98
@@ -1280,9 +1280,9 @@ end of description
 10.0
 10.0
 1
-false
+true
 BlackJack
-random Stuff
+quickBar
 images/items/eq-sec-wand1.jpg
 
 99
@@ -1292,7 +1292,7 @@ no description yet
 end of description
 10.0
 10.0
-2
+5
 true
 BlackJack
 quickBar
@@ -1336,4 +1336,459 @@ true
 BlackJack
 quickBar
 images/items/spend-scroll.png
+
+103
+pouch of gold coins
+randomStuff
+coins
+end of description
+10.0
+1.0
+1
+false
+Hyakkimaru
+random Stuff
+images/items/spend-pouch.png
+
+104
+new item
+randomStuff
+no description yet
+end of description
+10.0
+1024.0
+1
+false
+GM
+random Stuff
+images/items/rand-box.png
+
+105
+leather armor +1
+equipment
+Warding. Once per day as an immediate action, the wearer of warding armor can activate it to end all active challenge, judgment, and smite abilities affecting her. This does not prevent opponents from selecting her as a target for these abilities in the future. As a swift action, the wearer can expend one of her own challenge, judgment, or smite abilities to refresh the armor’s ability to end these attacks.
+end of description
+10.0
+4000.0
+1
+true
+Chudelkin
+armor
+images/items/eq-ar-shoulder pads.png
+
+106
+Cape of Free Will +2/+3 Will
+equipment
+no description yet
+end of description
+10.0
+6000.0
+1
+true
+Chudelkin
+back
+images/items/eq-back-cloak.png
+
+107
+Ring of Sustenance
+equipment
+This ring continually provides its wearer with life-sustaining nourishment. The ring also refreshes the body and mind; its wearer needs only sleep 2 hours per day to gain the benefit of 8 hours of sleep. This allows a spellcaster that requires rest to prepare spells to do so after only 2 hours, but this does not allow a spellcaster to prepare spells more than once per day. The ring must be worn for a full week before it begins to work. If it is removed, the owner must wear it for another week to reattune it to himself.
+end of description
+10.0
+10.0
+1
+true
+Chudelkin
+accessory 1
+images/items/eq-acc-ring.png
+
+108
+Archeologist belt
+equipment
+4 additional bombs and a riddle<br>THEY TAKE MY SOUL FOUR KINGS A PARTIAL JOKE LONG BEFORE SOLSTICE<br>
+end of description
+10.0
+10.0
+1
+true
+Chudelkin
+accessory 2
+images/items/eq-jev-belt.png
+
+109
+message from Rusty on paper
+randomStuff
+no description yet
+end of description
+10.0
+10.0
+1
+false
+Chudelkin
+random Stuff
+images/items/rand-letter.png
+
+110
+Lupa
+randomStuff
+pupa
+end of description
+10.0
+10.0
+1
+false
+Chudelkin
+random Stuff
+images/items/rand-box.png
+
+111
+Cure light wounds wand 20
+usefulGear
+no description yet
+end of description
+10.0
+10.0
+1
+true
+Chudelkin
+quickBar
+images/items/eq-sec-wand1.jpg
+
+112
+Box of random stuff
+randomStuff
+5 crystals, a large crystal and a bunch of hinges from gargoyles, and I'll take their bodies too)
+end of description
+10.0
+10.0
+1
+false
+Chudelkin
+random Stuff
+images/items/rand-box.png
+
+113
+Vest of Surgery
+equipment
+The wearer is always treated as if using a healer’s kit when making Heal checks. Once per day, the wearer can make a DC 20 Heal check as if attempting to treat deadly wounds. If the check is successful, it cures 1d4 points of ability damage instead of hit point damage.
+end of description
+10.0
+10.0
+1
+true
+Chudelkin
+extra armor
+images/items/eq-ar-armor.png
+
+114
+Potion of cure moderate wounds
+spendable
+no description yet
+end of description
+10.0
+10.0
+0
+true
+Chudelkin
+quickBar
+images/items/spend-potionLife.png
+
+115
+Magic potion dispenser
+randomStuff
+This magically-augmented alchemical device distills a potion or alchemist extract into the knowledge needed to create its formula. By gently heating a potion or extract in the alembic for 1 hour, the device creates a few drops of magical liquid. If consumed by an alchemist, this liquid gives him knowledge of the potion’s or extract’s formula, as if it were an extract he recorded in his formula book. This knowledge lasts for 24 hours. He may scribe this formula in his formula book in the normal fashion.
+end of description
+10.0
+10.0
+1
+false
+Chudelkin
+random Stuff
+images/items/rand-box.png
+
+116
+amulet of natural armor + 1
+equipment
+no description yet
+end of description
+10.0
+2000.0
+1
+true
+Chudelkin
+amulet
+images/items/eq-acc-amulet.png
+
+117
+composite crossbow +1
+equipment
+dmg: 1d8+str.mod (piercing) + 1d6 (fiery) +1<br>crit: 19-20x2<br>5 bolts per clip, reload = standard action<br>
+end of description
+10.0
+8000.0
+1
+true
+Chudelkin
+primary
+images/items/eq-pri-crossbow.png
+
+118
+belt on dext +2 (12->14)
+equipment
+no description yet
+end of description
+10.0
+4000.0
+1
+true
+Chudelkin
+belt
+images/items/eq-jev-belt.png
+
+119
+Scroll of cure moderate wounds
+spendable
+no description yet
+end of description
+10.0
+10.0
+4
+true
+Chudelkin
+quickBar
+images/items/spend-scroll.png
+
+121
+Blackmetal armor
+equipment
++2 Black metal full plate. Heavy Armor. Weight 30 lbs. Armor Bonus +11; Max Dex Bonus +1; Armor Check Penalty -5. Arcane Spell Failure Chance 25%; Speed 20 ft./15 ft. This armor grants Heroic Defiance feat to the wearer. Once per day as an immediate action you can delay the onset of one harmful condition or affliction (such as panicked, paralyzed, stunned, and so on), including permanent and instantaneous conditions. Activating this feat delays the onset of the condition until the end of your next turn, after which time the condition takes its normal effect. This feat has no effect on hit point damage or ability damage.
+end of description
+10.0
+6000.0
+1
+true
+Nyolan
+armor
+images/items/eq-ar-armor.png
+
+122
+Heavy wooden shield +2
+equipment
+4 ac (shield)
+end of description
+10.0
+4000.0
+1
+true
+Nyolan
+secondary
+images/items/eq-sec-shield.png
+
+123
+Torag  Follower Hammer
+equipment
+no description yet
+end of description
+10.0
+10.0
+1
+true
+Nyolan
+primary
+images/items/eq-pri-hammer.png
+
+124
+Cloak of the Forgotten Crusader
+equipment
++2 to saving throws. +4 against fear effects.<br><br>The wearer of the cloak can cast Inheritors smite once per day.<br>
+end of description
+10.0
+10000.0
+1
+true
+Nyolan
+back
+images/items/eq-back-cloak.png
+
+125
+Potion of cure serious wounds
+spendable
+no description yet
+end of description
+10.0
+10.0
+2
+true
+Nyolan
+quickBar
+images/items/spend-potionLife.png
+
+126
+Potion of cure moderate wounds
+spendable
+no description yet
+end of description
+10.0
+10.0
+0
+true
+Nyolan
+quickBar
+images/items/spend-potionLife.png
+
+127
+Potion of shield
+spendable
+no description yet
+end of description
+10.0
+10.0
+5
+true
+Nyolan
+quickBar
+images/items/spend-potion.png
+
+128
+Ring of protection +2
+equipment
++2 defl bonus
+end of description
+10.0
+8000.0
+1
+true
+Nyolan
+quickBar
+images/items/eq-acc-ring.png
+
+129
+Amulet of natural armor +2
+equipment
+2 natural bonus
+end of description
+10.0
+8000.0
+1
+true
+Nyolan
+quickBar
+images/items/eq-acc-amulet.png
+
+130
+Potion of haste 5 rounds
+spendable
++1 attack on FAA, +1 to attack rolls and +1 to ac, x2 movement
+end of description
+10.0
+10.0
+2
+true
+BlackJack
+quickBar
+images/items/spend-potion.png
+
+131
+Potion of shield 5 minutes
+spendable
++4 shield bonus
+end of description
+10.0
+10.0
+6
+true
+Chudelkin
+quickBar
+images/items/spend-potion.png
+
+132
+Potion of haste 5 rounds
+spendable
++1 attack on FAA, +1 to attack rolls and +1 to ac, x2 movement
+end of description
+10.0
+10.0
+2
+true
+Hyakkimaru
+quickBar
+images/items/spend-potion.png
+
+133
+Potion of haste 5 rounds
+spendable
++1 attack on FAA, +1 to attack rolls and +1 to ac, x2 movement
+end of description
+10.0
+10.0
+1
+true
+Chudelkin
+quickBar
+images/items/spend-potion.png
+
+134
+Potion of shield 5 minutes
+spendable
++4 shield bonus
+end of description
+10.0
+10.0
+5
+true
+Hyakkimaru
+quickBar
+images/items/spend-potion.png
+
+120
+Potion of cure serious wounds
+spendable
+3d8+5
+end of description
+10.0
+750.0
+2
+true
+Chudelkin
+quickBar
+images/items/spend-potionLife.png
+
+136
+Potion of cure serious wounds
+spendable
+3d8+5
+end of description
+10.0
+10.0
+2
+true
+Velarion
+quickBar
+images/items/spend-potionLife.png
+
+137
+Potion of cure serious wounds
+spendable
+3d8+5
+end of description
+10.0
+10.0
+2
+true
+BlackJack
+quickBar
+images/items/spend-potionLife.png
+
+138
+Potion of cure serious wounds
+spendable
+3d8+5
+end of description
+10.0
+10.0
+2
+true
+Hyakkimaru
+quickBar
+images/items/spend-potionLife.png
 

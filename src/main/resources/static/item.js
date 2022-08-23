@@ -90,6 +90,22 @@ function constructItemDescription(tempElement){
       document.getElementById("tempAmount").innerText = String(parseInt(document.getElementById("tempAmount").innerText)+1);
     })
 
+    let price = document.createElement("div");
+    price.contentEditable = true;
+    price.classList.add("itemDescription-itemPrice");
+    //price.backgroundColor = "rgb(255, 239, 100)";
+    price.id = "tempPrice";
+    price.style.fontSize = "16px";
+    let tPrice = parseInt(tempElement.itemVolume);
+    if (tPrice/1000 >= 1 && tPrice%10 == 0){
+      price.innerText = String(tPrice/1000) + "k";
+    }
+    else if (tPrice/1000 < 1 || tPrice%10 != 0){
+      price.innerText = String(tPrice);
+    }
+    price.style.zIndex = "1";
+    newDescription.appendChild(price);
+
 
     //type section
     let descType = document.createElement("div");
@@ -122,6 +138,12 @@ function constructItemDescription(tempElement){
       tempElement.itemType = descType.innerText;
       tempElement.itemSecondaryType = secType.innerText;
       tempElement.itemAmount = parseInt(amount.innerText);
+      if (price.innerText.includes("k")){
+        tempElement.itemVolume = parseInt(parseFloat(price.innerText.replace('k', ''))*1000);
+      }
+      else if (!price.innerText.includes("k")){
+        tempElement.itemVolume = parseInt(price.innerText);
+      }
       console.log(tempElement.itemName);
       updateItemInfo(findIndexInItems(tempElement.itemId));
       removeTempDescription();
@@ -145,7 +167,7 @@ function findIndexInItems(tempId){
         return i;
       }
     }
-    console.log("findIndexInItems returned -1");
+    //console.log("findIndexInItems returned -1");
     return -1;
 }
   
